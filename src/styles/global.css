@@ -1,0 +1,343 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+    html {
+        font-family: "Inter", system-ui, sans-serif;
+        scroll-behavior: smooth;
+    }
+
+    body {
+        @apply transition-colors duration-300;
+    }
+
+    /* Custom scrollbar */
+    ::-webkit-scrollbar {
+        width: 8px;
+    }
+
+    ::-webkit-scrollbar-track {
+        @apply bg-cosmic-100 dark:bg-cosmic-800;
+    }
+
+    ::-webkit-scrollbar-thumb {
+        @apply bg-cosmic-300 dark:bg-cosmic-600 rounded-full;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+        @apply bg-cosmic-400 dark:bg-cosmic-500;
+    }
+}
+
+@layer components {
+    /* Cosmic button styles */
+    .btn-cosmic {
+        @apply px-6 py-3 rounded-lg font-medium transition-all duration-200;
+        @apply bg-gradient-to-r from-nebula-500 to-nebula-600;
+        @apply text-white shadow-lg hover:shadow-xl;
+        @apply hover:from-nebula-600 hover:to-nebula-700;
+        @apply transform hover:scale-105 active:scale-95;
+    }
+
+    .btn-cosmic-outline {
+        @apply px-6 py-3 rounded-lg font-medium transition-all duration-200;
+        @apply border-2 border-nebula-500 text-nebula-600 dark:text-nebula-400;
+        @apply hover:bg-nebula-500 hover:text-white;
+        @apply transform hover:scale-105 active:scale-95;
+    }
+
+    .btn-starlight {
+        @apply px-6 py-3 rounded-lg font-medium transition-all duration-200;
+        @apply bg-gradient-to-r from-starlight-400 to-starlight-500;
+        @apply text-cosmic-900 shadow-lg hover:shadow-xl;
+        @apply hover:from-starlight-500 hover:to-starlight-600;
+        @apply transform hover:scale-105 active:scale-95;
+    }
+
+    /* Card styles */
+    .card-cosmic {
+        @apply bg-white dark:bg-cosmic-800 rounded-xl shadow-lg;
+        @apply border border-cosmic-200 dark:border-cosmic-700;
+        @apply transition-all duration-300;
+        @apply hover:shadow-xl hover:shadow-nebula-500/10;
+        @apply hover:border-nebula-300 dark:hover:border-nebula-600;
+    }
+
+    /* Glowing effects */
+    .glow-nebula {
+        @apply shadow-lg shadow-nebula-500/20;
+    }
+
+    .glow-starlight {
+        @apply shadow-lg shadow-starlight-400/20;
+    }
+
+    /* Text gradient effects */
+    .text-gradient-cosmic {
+        @apply bg-gradient-to-r from-nebula-500 to-starlight-500;
+        @apply bg-clip-text text-transparent;
+    }
+
+    .text-gradient-starlight {
+        @apply bg-gradient-to-r from-starlight-400 to-coffee-400;
+        @apply bg-clip-text text-transparent;
+    }
+
+    /* Navigation styles */
+    .nav-link {
+        @apply relative px-4 py-2 text-cosmic-700 dark:text-cosmic-300;
+        @apply hover:text-nebula-600 dark:hover:text-nebula-400;
+        @apply transition-colors duration-200;
+    }
+
+    .nav-link::after {
+        content: "";
+        @apply absolute bottom-0 left-0 w-0 h-0.5;
+        @apply bg-gradient-to-r from-nebula-500 to-starlight-500;
+        @apply transition-all duration-300;
+    }
+
+    .nav-link:hover::after,
+    .nav-link.active::after {
+        @apply w-full;
+    }
+
+    /* Form styles */
+    .form-input {
+        @apply w-full px-4 py-3 rounded-lg border border-cosmic-300 dark:border-cosmic-600;
+        @apply bg-white dark:bg-cosmic-800 text-cosmic-900 dark:text-cosmic-100;
+        @apply focus:outline-none focus:ring-2 focus:ring-nebula-500 focus:border-transparent;
+        @apply transition-all duration-200;
+    }
+
+    .form-textarea {
+        @apply w-full px-4 py-3 rounded-lg border border-cosmic-300 dark:border-cosmic-600;
+        @apply bg-white dark:bg-cosmic-800 text-cosmic-900 dark:text-cosmic-100;
+        @apply focus:outline-none focus:ring-2 focus:ring-nebula-500 focus:border-transparent;
+        @apply transition-all duration-200 resize-vertical min-h-[120px];
+    }
+
+    /* Timeline styles */
+    .timeline-item {
+        @apply relative pl-8 pb-8 border-l-2 border-cosmic-200 dark:border-cosmic-700;
+    }
+
+    .timeline-item::before {
+        content: "";
+        @apply absolute -left-2 top-0 w-4 h-4 rounded-full;
+        @apply bg-gradient-to-r from-nebula-500 to-starlight-500;
+        @apply border-4 border-white dark:border-cosmic-900;
+    }
+
+    .timeline-item:last-child {
+        @apply border-l-0;
+    }
+
+    /* Blog post styles */
+    .prose-cosmic {
+        @apply prose prose-lg max-w-none;
+        @apply prose-headings:text-cosmic-900 dark:prose-headings:text-cosmic-100;
+        @apply prose-p:text-cosmic-700 dark:prose-p:text-cosmic-300;
+        @apply prose-a:text-nebula-600 dark:prose-a:text-nebula-400;
+        @apply prose-a:no-underline hover:prose-a:underline;
+        @apply prose-code:text-starlight-600 dark:prose-code:text-starlight-400;
+        @apply prose-code:bg-cosmic-100 dark:prose-code:bg-cosmic-800;
+        @apply prose-code:px-1.5 prose-code:py-0.5 prose-code:rounded;
+        @apply prose-pre:bg-cosmic-900 dark:prose-pre:bg-cosmic-950;
+        @apply prose-blockquote:border-l-nebula-500;
+        @apply prose-blockquote:text-cosmic-700 dark:prose-blockquote:text-cosmic-300;
+    }
+
+    /* Animated stars background */
+    .stars-bg {
+        position: relative;
+        overflow: hidden;
+    }
+
+    .stars-bg::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-image:
+            radial-gradient(
+                2px 2px at 20px 30px,
+                rgba(255, 255, 255, 0.3),
+                transparent
+            ),
+            radial-gradient(
+                2px 2px at 40px 70px,
+                rgba(255, 255, 255, 0.2),
+                transparent
+            ),
+            radial-gradient(
+                1px 1px at 90px 40px,
+                rgba(255, 255, 255, 0.4),
+                transparent
+            ),
+            radial-gradient(
+                1px 1px at 130px 80px,
+                rgba(255, 255, 255, 0.3),
+                transparent
+            ),
+            radial-gradient(
+                2px 2px at 160px 30px,
+                rgba(255, 255, 255, 0.2),
+                transparent
+            );
+        background-repeat: repeat;
+        background-size: 200px 100px;
+        animation: twinkle 3s ease-in-out infinite;
+        pointer-events: none;
+    }
+
+    /* Coffee steam animation */
+    .coffee-steam {
+        position: relative;
+    }
+
+    .coffee-steam::before {
+        content: "☕";
+        position: absolute;
+        top: -10px;
+        left: 50%;
+        transform: translateX(-50%);
+        animation: float 2s ease-in-out infinite;
+        opacity: 0.7;
+    }
+
+    /* Hover effects */
+    .hover-lift {
+        @apply transition-transform duration-300;
+    }
+
+    .hover-lift:hover {
+        @apply transform -translate-y-2;
+    }
+
+    /* Tag styles */
+    .tag-cosmic {
+        @apply inline-block px-3 py-1 text-sm rounded-full;
+        @apply bg-cosmic-100 dark:bg-cosmic-800;
+        @apply text-cosmic-700 dark:text-cosmic-300;
+        @apply border border-cosmic-200 dark:border-cosmic-700;
+        @apply hover:bg-nebula-100 dark:hover:bg-nebula-900;
+        @apply hover:text-nebula-700 dark:hover:text-nebula-300;
+        @apply transition-colors duration-200;
+    }
+
+    /* Focus styles for accessibility */
+    .focus-cosmic {
+        @apply focus:outline-none focus:ring-2 focus:ring-nebula-500 focus:ring-offset-2;
+        @apply dark:focus:ring-offset-cosmic-900;
+    }
+}
+
+@layer utilities {
+    /* Custom animations */
+    .animate-twinkle {
+        animation: twinkle 3s ease-in-out infinite;
+    }
+
+    .animate-float {
+        animation: float 6s ease-in-out infinite;
+    }
+
+    .animate-glow {
+        animation: glow 2s ease-in-out infinite alternate;
+    }
+
+    /* Gradient backgrounds */
+    .bg-gradient-cosmic {
+        @apply bg-gradient-to-br from-cosmic-50 via-nebula-50 to-starlight-50;
+    }
+
+    .dark .bg-gradient-cosmic {
+        @apply bg-gradient-to-br from-cosmic-950 via-cosmic-900 to-cosmic-800;
+    }
+
+    .bg-gradient-hero {
+        @apply bg-gradient-to-br from-nebula-500/10 via-transparent to-starlight-500/10;
+    }
+
+    /* Text utilities */
+    .text-balance {
+        text-wrap: balance;
+    }
+
+    /* Resize utilities */
+    .resize-vertical {
+        resize: vertical;
+    }
+
+    .resize-horizontal {
+        resize: horizontal;
+    }
+
+    .resize-both {
+        resize: both;
+    }
+
+    .resize-none {
+        resize: none;
+    }
+
+    /* Backdrop blur utilities */
+    .backdrop-blur-cosmic {
+        @apply backdrop-blur-sm bg-white/80 dark:bg-cosmic-900/80;
+    }
+}
+
+/* Print styles */
+@media print {
+    .no-print {
+        display: none !important;
+    }
+
+    body {
+        @apply text-black bg-white;
+    }
+
+    .card-cosmic {
+        @apply border border-gray-300 shadow-none;
+    }
+}
+
+/* Reduced motion preferences */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+
+    .stars-bg::before {
+        animation: none;
+    }
+
+    .coffee-steam::before {
+        animation: none;
+    }
+}
+
+/* High contrast mode */
+@media (prefers-contrast: high) {
+    .card-cosmic {
+        @apply border-2 border-black dark:border-white;
+    }
+
+    .btn-cosmic {
+        @apply border-2 border-black dark:border-white;
+    }
+
+    .text-gradient-cosmic,
+    .text-gradient-starlight {
+        @apply bg-none text-black dark:text-white;
+    }
+}

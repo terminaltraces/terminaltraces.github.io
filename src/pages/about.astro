@@ -1,0 +1,445 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import HeroSection from "../components/HeroSection.astro";
+import Section from "../components/Section.astro";
+import Card from "../components/Card.astro";
+import FeatureGrid from "../components/FeatureGrid.astro";
+import CTASection from "../components/CTASection.astro";
+
+const workingApproaches = [
+    {
+        icon: "🎯",
+        title: "User-Centered",
+        description:
+            "Every technical decision should ultimately serve the people using our software.",
+        color: "nebula" as const,
+    },
+    {
+        icon: "🔍",
+        title: "Curious",
+        description:
+            'I ask "why" and "what if" questions. Understanding the problem deeply leads to better solutions.',
+        color: "starlight" as const,
+    },
+    {
+        icon: "🤝",
+        title: "Collaborative",
+        description:
+            "The best solutions emerge from diverse perspectives and open communication.",
+        color: "coffee" as const,
+    },
+    {
+        icon: "🛠️",
+        title: "Craftsmanship",
+        description:
+            "Code is communication. I write for humans first, computers second.",
+        color: "nebula" as const,
+    },
+    {
+        icon: "📈",
+        title: "Growth Mindset",
+        description:
+            "Failures are learning opportunities. I'm not afraid to be wrong if it means we all learn something.",
+        color: "starlight" as const,
+    },
+    {
+        icon: "⚖️",
+        title: "Balanced",
+        description:
+            "Great work requires rest, reflection, and life outside of code. Sustainability matters.",
+        color: "coffee" as const,
+    },
+];
+---
+
+<BaseLayout
+    title="About Drew - Coffee, Code & Cosmic Adventures"
+    description="Get to know Drew - a passionate developer who believes the best code is written with curiosity, empathy, and really good coffee. Currently exploring the intersection of technology and human connection."
+>
+    <!-- Hero Section -->
+    <HeroSection
+        title="Hey there! I'm Drew ✨"
+        description="A passionate developer who believes the best code is written with curiosity, empathy, and really good coffee."
+        size="lg"
+    >
+        <!-- Avatar placeholder -->
+        <div
+            class="w-32 h-32 mx-auto bg-gradient-to-br from-nebula-400 to-starlight-400 rounded-full flex items-center justify-center text-6xl animate-float"
+        >
+            👨‍💻
+        </div>
+    </HeroSection>
+
+    <!-- Bio Section -->
+    <Section background="white">
+        <div class="max-w-4xl mx-auto">
+            <div class="prose prose-lg prose-cosmic mx-auto">
+                <h2 class="text-3xl font-bold text-gradient-cosmic mb-8">
+                    My Story
+                </h2>
+
+                <p class="text-xl leading-relaxed mb-6">
+                    I've been fascinated by the intersection of technology and
+                    human connection for as long as I can remember. What started
+                    as curiosity about "how websites work" has evolved into a
+                    deep passion for crafting digital experiences that genuinely
+                    improve people's lives.
+                </p>
+
+                <p class="mb-6">
+                    By day, I'm a software engineer who loves solving complex
+                    problems with elegant solutions. I believe that great code
+                    isn't just functional—it's readable, maintainable, and tells
+                    a story. Whether I'm architecting a new feature or debugging
+                    legacy code, I approach each challenge with curiosity and a
+                    commitment to craftsmanship.
+                </p>
+
+                <p class="mb-6">
+                    By night (and early morning), you'll find me exploring new
+                    technologies, contributing to open source projects, or
+                    writing about the lessons I've learned along the way. I'm
+                    particularly drawn to frameworks that prioritize performance
+                    and developer experience—like Astro, which powers this very
+                    site!
+                </p>
+
+                <p class="mb-6">
+                    When I'm not coding, I'm probably experimenting with new
+                    coffee brewing methods, stargazing, reading science fiction,
+                    or planning my next adventure. I believe that diverse
+                    experiences make us better developers, and I try to bring
+                    that perspective to everything I build.
+                </p>
+
+                <Card variant="bordered" background="gradient" class="my-8">
+                    <p
+                        class="text-lg font-medium text-cosmic-900 dark:text-cosmic-100 mb-2"
+                    >
+                        💡 Fun fact
+                    </p>
+                    <p class="text-cosmic-700 dark:text-cosmic-300">
+                        I once spent three weeks perfecting a single CSS
+                        animation because I was convinced there had to be a more
+                        elegant solution. There was! And the journey taught me
+                        more about timing functions than any tutorial ever
+                        could.
+                    </p>
+                </Card>
+            </div>
+        </div>
+    </Section>
+
+    <!-- Now Sections -->
+    <Section background="gradient" containerWidth="xl">
+        <div class="text-center mb-16">
+            <h2
+                class="text-4xl md:text-5xl font-bold text-gradient-cosmic mb-6"
+            >
+                What I'm Up to Now
+            </h2>
+            <p
+                class="text-xl text-cosmic-600 dark:text-cosmic-400 max-w-3xl mx-auto"
+            >
+                A glimpse into my current adventures, discoveries, and
+                obsessions ✨
+            </p>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            <!-- Currently Listening -->
+            <Card variant="hover-lift" padding="lg">
+                <div class="space-y-6">
+                    <div class="flex items-center space-x-3">
+                        <div class="text-3xl">🎧</div>
+                        <h3
+                            class="text-2xl font-bold text-cosmic-900 dark:text-cosmic-100"
+                        >
+                            Currently Listening
+                        </h3>
+                    </div>
+
+                    <div class="space-y-4">
+                        <div
+                            class="p-4 bg-cosmic-50 dark:bg-cosmic-700 rounded-lg"
+                        >
+                            <h4
+                                class="font-semibold text-cosmic-900 dark:text-cosmic-100 mb-1"
+                            >
+                                Interstellar (Original Motion Picture
+                                Soundtrack)
+                            </h4>
+                            <p
+                                class="text-cosmic-600 dark:text-cosmic-400 text-sm mb-2"
+                            >
+                                Hans Zimmer
+                            </p>
+                            <p
+                                class="text-cosmic-700 dark:text-cosmic-300 text-sm"
+                            >
+                                Perfect for late-night coding sessions.
+                                "Cornfield Chase" is my current obsession.
+                            </p>
+                        </div>
+
+                        <div
+                            class="p-4 bg-cosmic-50 dark:bg-cosmic-700 rounded-lg"
+                        >
+                            <h4
+                                class="font-semibold text-cosmic-900 dark:text-cosmic-100 mb-1"
+                            >
+                                Developer Tea Podcast
+                            </h4>
+                            <p
+                                class="text-cosmic-600 dark:text-cosmic-400 text-sm mb-2"
+                            >
+                                Jonathan Cutrell
+                            </p>
+                            <p
+                                class="text-cosmic-700 dark:text-cosmic-300 text-sm"
+                            >
+                                Short, thoughtful episodes perfect for commutes
+                                or coffee breaks.
+                            </p>
+                        </div>
+
+                        <div
+                            class="p-4 bg-cosmic-50 dark:bg-cosmic-700 rounded-lg"
+                        >
+                            <h4
+                                class="font-semibold text-cosmic-900 dark:text-cosmic-100 mb-1"
+                            >
+                                Tycho - Weather
+                            </h4>
+                            <p
+                                class="text-cosmic-600 dark:text-cosmic-400 text-sm mb-2"
+                            >
+                                Album
+                            </p>
+                            <p
+                                class="text-cosmic-700 dark:text-cosmic-300 text-sm"
+                            >
+                                Ambient electronic that pairs beautifully with
+                                focused work.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </Card>
+
+            <!-- Currently Reading -->
+            <Card variant="hover-lift" padding="lg">
+                <div class="space-y-6">
+                    <div class="flex items-center space-x-3">
+                        <div class="text-3xl">📚</div>
+                        <h3
+                            class="text-2xl font-bold text-cosmic-900 dark:text-cosmic-100"
+                        >
+                            Currently Reading
+                        </h3>
+                    </div>
+
+                    <div class="space-y-4">
+                        <div
+                            class="p-4 bg-cosmic-50 dark:bg-cosmic-700 rounded-lg"
+                        >
+                            <h4
+                                class="font-semibold text-cosmic-900 dark:text-cosmic-100 mb-1"
+                            >
+                                A Philosophy of Software Design
+                            </h4>
+                            <p
+                                class="text-cosmic-600 dark:text-cosmic-400 text-sm mb-2"
+                            >
+                                John Ousterhout
+                            </p>
+                            <p
+                                class="text-cosmic-700 dark:text-cosmic-300 text-sm"
+                            >
+                                Rethinking how I approach complexity in
+                                software. The chapter on deep modules is 🔥
+                            </p>
+                        </div>
+
+                        <div
+                            class="p-4 bg-cosmic-50 dark:bg-cosmic-700 rounded-lg"
+                        >
+                            <h4
+                                class="font-semibold text-cosmic-900 dark:text-cosmic-100 mb-1"
+                            >
+                                The Left Hand of Darkness
+                            </h4>
+                            <p
+                                class="text-cosmic-600 dark:text-cosmic-400 text-sm mb-2"
+                            >
+                                Ursula K. Le Guin
+                            </p>
+                            <p
+                                class="text-cosmic-700 dark:text-cosmic-300 text-sm"
+                            >
+                                A sci-fi masterpiece that's making me think
+                                differently about identity and society.
+                            </p>
+                        </div>
+
+                        <div
+                            class="p-4 bg-cosmic-50 dark:bg-cosmic-700 rounded-lg"
+                        >
+                            <h4
+                                class="font-semibold text-cosmic-900 dark:text-cosmic-100 mb-1"
+                            >
+                                Coffee: A Comprehensive Guide
+                            </h4>
+                            <p
+                                class="text-cosmic-600 dark:text-cosmic-400 text-sm mb-2"
+                            >
+                                Anette Moldvaer
+                            </p>
+                            <p
+                                class="text-cosmic-700 dark:text-cosmic-300 text-sm"
+                            >
+                                Deepening my understanding of extraction science
+                                and origin stories.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </Card>
+
+            <!-- Currently Watching -->
+            <Card variant="hover-lift" padding="lg">
+                <div class="space-y-6">
+                    <div class="flex items-center space-x-3">
+                        <div class="text-3xl">📺</div>
+                        <h3
+                            class="text-2xl font-bold text-cosmic-900 dark:text-cosmic-100"
+                        >
+                            Currently Watching
+                        </h3>
+                    </div>
+
+                    <div class="space-y-4">
+                        <div
+                            class="p-4 bg-cosmic-50 dark:bg-cosmic-700 rounded-lg"
+                        >
+                            <h4
+                                class="font-semibold text-cosmic-900 dark:text-cosmic-100 mb-1"
+                            >
+                                The Expanse
+                            </h4>
+                            <p
+                                class="text-cosmic-600 dark:text-cosmic-400 text-sm mb-2"
+                            >
+                                Season 4
+                            </p>
+                            <p
+                                class="text-cosmic-700 dark:text-cosmic-300 text-sm"
+                            >
+                                Hard sci-fi at its finest. The attention to
+                                realistic physics is incredible.
+                            </p>
+                        </div>
+
+                        <div
+                            class="p-4 bg-cosmic-50 dark:bg-cosmic-700 rounded-lg"
+                        >
+                            <h4
+                                class="font-semibold text-cosmic-900 dark:text-cosmic-100 mb-1"
+                            >
+                                Coding Garden with CJ
+                            </h4>
+                            <p
+                                class="text-cosmic-600 dark:text-cosmic-400 text-sm mb-2"
+                            >
+                                YouTube Channel
+                            </p>
+                            <p
+                                class="text-cosmic-700 dark:text-cosmic-300 text-sm"
+                            >
+                                Love watching live coding sessions. CJ's energy
+                                is infectious!
+                            </p>
+                        </div>
+
+                        <div
+                            class="p-4 bg-cosmic-50 dark:bg-cosmic-700 rounded-lg"
+                        >
+                            <h4
+                                class="font-semibold text-cosmic-900 dark:text-cosmic-100 mb-1"
+                            >
+                                James Hoffmann Coffee Reviews
+                            </h4>
+                            <p
+                                class="text-cosmic-600 dark:text-cosmic-400 text-sm mb-2"
+                            >
+                                YouTube Channel
+                            </p>
+                            <p
+                                class="text-cosmic-700 dark:text-cosmic-300 text-sm"
+                            >
+                                Learning about coffee science from the master
+                                himself. Recently: "Understanding Espresso"
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </Card>
+        </div>
+    </Section>
+
+    <!-- Values & Approach -->
+    <Section background="white" containerWidth="xl">
+        <div class="text-center mb-16">
+            <h2 class="text-4xl font-bold text-gradient-cosmic mb-6">
+                How I Approach Work
+            </h2>
+            <p
+                class="text-xl text-cosmic-600 dark:text-cosmic-400 max-w-3xl mx-auto"
+            >
+                The principles that guide my development process and team
+                collaboration
+            </p>
+        </div>
+
+        <FeatureGrid features={workingApproaches} columns={3} />
+    </Section>
+
+    <!-- CTA Section -->
+    <CTASection
+        title="Let's Connect! ✨"
+        description="I'm always excited to meet fellow developers, coffee enthusiasts, and curious minds. Whether you want to discuss code, share coffee brewing tips, or just say hello, I'd love to hear from you!"
+        primaryButton={{
+            text: "💬 Get in Touch",
+            href: "/contact",
+        }}
+        secondaryButton={{
+            text: "💖 Working With Me",
+            href: "/readme",
+        }}
+    />
+</BaseLayout>
+
+<style>
+    /* Custom animations for the about page */
+    @keyframes float {
+        0%,
+        100% {
+            transform: translateY(0px);
+        }
+        50% {
+            transform: translateY(-10px);
+        }
+    }
+
+    .animate-float {
+        animation: float 6s ease-in-out infinite;
+    }
+
+    /* Responsive text sizing */
+    @media (max-width: 640px) {
+        .prose {
+            font-size: 1rem;
+            line-height: 1.6;
+        }
+    }
+</style>

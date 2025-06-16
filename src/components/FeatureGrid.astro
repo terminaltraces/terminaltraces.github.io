@@ -1,0 +1,57 @@
+---
+export interface Props {
+  features: Array<{
+    icon: string;
+    title: string;
+    description: string;
+    color?: 'nebula' | 'starlight' | 'coffee' | 'cosmic';
+  }>;
+  columns?: 2 | 3 | 4;
+  centered?: boolean;
+  iconSize?: 'sm' | 'md' | 'lg';
+  class?: string;
+}
+
+const {
+  features,
+  columns = 3,
+  centered = true,
+  iconSize = 'md',
+  class: className = ""
+} = Astro.props;
+
+const gridClasses = {
+  2: 'grid-cols-1 md:grid-cols-2',
+  3: 'grid-cols-1 md:grid-cols-2 lg:grid-cols-3',
+  4: 'grid-cols-1 md:grid-cols-2 lg:grid-cols-4'
+};
+
+const iconSizeClasses = {
+  sm: 'w-12 h-12 text-xl',
+  md: 'w-16 h-16 text-2xl',
+  lg: 'w-20 h-20 text-3xl'
+};
+
+const colorClasses = {
+  nebula: 'from-nebula-400 to-nebula-600',
+  starlight: 'from-starlight-400 to-starlight-600',
+  coffee: 'from-coffee-400 to-coffee-600',
+  cosmic: 'from-cosmic-400 to-cosmic-600'
+};
+---
+
+<div class={`grid ${gridClasses[columns]} gap-8 ${className}`}>
+  {features.map((feature) => (
+    <div class={`space-y-4 ${centered ? 'text-center' : ''}`}>
+      <div class={`${iconSizeClasses[iconSize]} mx-auto bg-gradient-to-br ${colorClasses[feature.color || 'nebula']} rounded-full flex items-center justify-center text-white`}>
+        {feature.icon}
+      </div>
+      <h3 class="text-xl font-bold text-cosmic-900 dark:text-cosmic-100">
+        {feature.title}
+      </h3>
+      <p class="text-cosmic-600 dark:text-cosmic-400">
+        {feature.description}
+      </p>
+    </div>
+  ))}
+</div>

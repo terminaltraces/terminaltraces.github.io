@@ -1,0 +1,17 @@
+---
+export interface Props {
+  href: string;
+  children: any;
+  class?: string;
+}
+
+const { href, class: className = "", ...props } = Astro.props;
+---
+
+<a
+  href={href}
+  class={`nav-link focus-cosmic rounded-lg ${className}`}
+  {...props}
+>
+  <slot />
+</a>

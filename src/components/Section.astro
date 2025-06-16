@@ -1,0 +1,51 @@
+---
+export interface Props {
+  background?: 'white' | 'cosmic' | 'gradient' | 'transparent';
+  padding?: 'sm' | 'md' | 'lg' | 'xl' | 'none';
+  containerWidth?: 'sm' | 'md' | 'lg' | 'xl' | 'full';
+  class?: string;
+  id?: string;
+  centered?: boolean;
+}
+
+const {
+  background = 'white',
+  padding = 'lg',
+  containerWidth = 'lg',
+  class: className = "",
+  id,
+  centered = false
+} = Astro.props;
+
+const backgroundClasses = {
+  white: 'bg-white dark:bg-cosmic-900',
+  cosmic: 'bg-cosmic-50 dark:bg-cosmic-900',
+  gradient: 'bg-gradient-to-br from-nebula-50/50 to-starlight-50/50 dark:from-cosmic-800/50 dark:to-cosmic-700/50',
+  transparent: 'bg-transparent'
+};
+
+const paddingClasses = {
+  none: '',
+  sm: 'py-8',
+  md: 'py-12',
+  lg: 'py-20',
+  xl: 'py-24'
+};
+
+const containerClasses = {
+  sm: 'max-w-2xl',
+  md: 'max-w-4xl',
+  lg: 'max-w-6xl',
+  xl: 'max-w-7xl',
+  full: 'max-w-none'
+};
+---
+
+<section
+  class={`${backgroundClasses[background]} ${paddingClasses[padding]} ${className}`}
+  id={id}
+>
+  <div class={`container mx-auto px-6 ${containerClasses[containerWidth]} ${centered ? 'text-center' : ''}`}>
+    <slot />
+  </div>
+</section>

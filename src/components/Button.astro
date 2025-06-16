@@ -1,0 +1,63 @@
+---
+export interface Props {
+  variant?: 'cosmic' | 'cosmic-outline' | 'starlight' | 'nebula' | 'ghost';
+  size?: 'sm' | 'md' | 'lg';
+  href?: string;
+  type?: 'button' | 'submit' | 'reset';
+  disabled?: boolean;
+  class?: string;
+  target?: '_blank' | '_self' | '_parent' | '_top';
+  rel?: string;
+}
+
+const {
+  variant = 'cosmic',
+  size = 'md',
+  href,
+  type = 'button',
+  disabled = false,
+  class: className = "",
+  target,
+  rel,
+  ...props
+} = Astro.props;
+
+const sizeClasses = {
+  sm: 'px-4 py-2 text-sm',
+  md: 'px-6 py-3 text-base',
+  lg: 'px-8 py-4 text-lg'
+};
+
+const variantClasses = {
+  cosmic: 'btn-cosmic',
+  'cosmic-outline': 'btn-cosmic-outline',
+  starlight: 'btn-starlight',
+  nebula: 'btn-nebula',
+  ghost: 'text-cosmic-700 dark:text-cosmic-300 hover:text-nebula-600 dark:hover:text-nebula-400 hover:bg-cosmic-100 dark:hover:bg-cosmic-800 transition-colors duration-200'
+};
+
+const baseClasses = 'inline-flex items-center justify-center font-medium rounded-lg transition-all duration-200 focus-cosmic disabled:opacity-50 disabled:cursor-not-allowed disabled:pointer-events-none';
+
+const buttonClasses = `${baseClasses} ${sizeClasses[size]} ${variantClasses[variant]} ${className}`;
+---
+
+{href ? (
+  <a
+    href={href}
+    class={buttonClasses}
+    target={target}
+    rel={rel}
+    {...props}
+  >
+    <slot />
+  </a>
+) : (
+  <button
+    type={type}
+    disabled={disabled}
+    class={buttonClasses}
+    {...props}
+  >
+    <slot />
+  </button>
+)}

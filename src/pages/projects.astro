@@ -1,0 +1,411 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const projects = [
+  {
+    title: "Cosmic Blog Platform",
+    description: "This very website! Built with Astro, React, and Tailwind CSS. Features dark mode, responsive design, and a cozy space theme perfect for late-night coding sessions.",
+    tech: ["Astro", "React", "TypeScript", "Tailwind CSS", "MDX"],
+    github: "https://github.com",
+    demo: "/",
+    featured: true,
+    status: "Live",
+    emoji: "✨"
+  },
+  {
+    title: "Real-time Analytics Dashboard",
+    description: "A high-performance dashboard processing millions of events daily. Built with microservices architecture and real-time data streaming for instant insights.",
+    tech: ["TypeScript", "Node.js", "React", "PostgreSQL", "Redis", "WebSockets"],
+    github: "https://github.com",
+    demo: null,
+    featured: true,
+    status: "Enterprise",
+    emoji: "📊"
+  },
+  {
+    title: "Coffee Brewing Timer",
+    description: "A minimalist Progressive Web App for pour-over coffee enthusiasts. Features brewing recipes, timers, and ratio calculators for the perfect cup every time.",
+    tech: ["Vue.js", "PWA", "Local Storage", "CSS Grid"],
+    github: "https://github.com",
+    demo: "https://coffee-timer.dev",
+    featured: false,
+    status: "Live",
+    emoji: "☕"
+  },
+  {
+    title: "Component Library",
+    description: "A comprehensive design system with 50+ reusable components. Built with TypeScript and Storybook, used across multiple products to ensure consistency.",
+    tech: ["React", "TypeScript", "Storybook", "Rollup", "CSS-in-JS"],
+    github: "https://github.com",
+    demo: "https://storybook.example.com",
+    featured: false,
+    status: "Open Source",
+    emoji: "🛠️"
+  },
+  {
+    title: "E-commerce Platform",
+    description: "Full-featured online store handling $2M+ in annual transactions. Includes inventory management, payment processing, and analytics dashboard.",
+    tech: ["Next.js", "Python", "Django", "PostgreSQL", "Stripe", "AWS"],
+    github: null,
+    demo: "https://shop.example.com",
+    featured: true,
+    status: "Live",
+    emoji: "🛒"
+  },
+  {
+    title: "Developer Productivity Tools",
+    description: "A collection of CLI tools and VS Code extensions to streamline development workflows. Includes code generators, linters, and deployment helpers.",
+    tech: ["Node.js", "TypeScript", "VS Code API", "Commander.js"],
+    github: "https://github.com",
+    demo: null,
+    featured: false,
+    status: "Open Source",
+    emoji: "⚡"
+  }
+];
+
+const featuredProjects = projects.filter(project => project.featured);
+const otherProjects = projects.filter(project => !project.featured);
+---
+
+<BaseLayout
+  title="Projects - Drew's Code Adventures"
+  description="Explore Drew's portfolio of projects ranging from cosmic blog platforms to real-time analytics dashboards. Each project tells a story of curiosity, craftsmanship, and countless cups of coffee."
+>
+  <!-- Hero Section -->
+  <section class="py-20 bg-gradient-hero">
+    <div class="container mx-auto px-6">
+      <div class="max-w-4xl mx-auto text-center space-y-8">
+        <h1 class="text-5xl md:text-6xl font-bold text-gradient-cosmic">
+          Code Adventures
+        </h1>
+        <p class="text-xl md:text-2xl text-cosmic-600 dark:text-cosmic-400 max-w-3xl mx-auto">
+          A collection of projects born from curiosity, crafted with care, and fueled by coffee ☕
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Featured Projects -->
+  <section class="py-20 bg-white dark:bg-cosmic-900">
+    <div class="container mx-auto px-6">
+      <div class="max-w-6xl mx-auto">
+        <div class="text-center mb-16">
+          <h2 class="text-4xl font-bold text-gradient-cosmic mb-6">
+            Featured Projects
+          </h2>
+          <p class="text-xl text-cosmic-600 dark:text-cosmic-400">
+            The projects I'm most proud of - each one taught me something valuable
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-12">
+          {featuredProjects.map((project) => (
+            <article class="card-cosmic p-8 hover-lift group">
+              <div class="space-y-6">
+                <!-- Header -->
+                <div class="flex items-start justify-between">
+                  <div class="flex items-center space-x-3">
+                    <span class="text-3xl">{project.emoji}</span>
+                    <div>
+                      <h3 class="text-2xl font-bold text-cosmic-900 dark:text-cosmic-100 group-hover:text-nebula-600 dark:group-hover:text-nebula-400 transition-colors duration-200">
+                        {project.title}
+                      </h3>
+                      <span class="inline-block px-2 py-1 text-xs font-medium bg-gradient-to-r from-nebula-500 to-starlight-500 text-white rounded-full mt-1">
+                        {project.status}
+                      </span>
+                    </div>
+                  </div>
+                  <div class="flex space-x-2">
+                    {project.github && (
+                      <a
+                        href={project.github}
+                        class="p-2 rounded-lg hover:bg-cosmic-100 dark:hover:bg-cosmic-800 transition-colors duration-200 focus-cosmic"
+                        aria-label="View source code"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        <svg class="w-5 h-5 text-cosmic-600 dark:text-cosmic-400" fill="currentColor" viewBox="0 0 24 24">
+                          <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                        </svg>
+                      </a>
+                    )}
+                    {project.demo && (
+                      <a
+                        href={project.demo}
+                        class="p-2 rounded-lg hover:bg-cosmic-100 dark:hover:bg-cosmic-800 transition-colors duration-200 focus-cosmic"
+                        aria-label="View live demo"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        <svg class="w-5 h-5 text-cosmic-600 dark:text-cosmic-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                        </svg>
+                      </a>
+                    )}
+                  </div>
+                </div>
+
+                <!-- Description -->
+                <p class="text-cosmic-700 dark:text-cosmic-300 leading-relaxed">
+                  {project.description}
+                </p>
+
+                <!-- Tech Stack -->
+                <div class="flex flex-wrap gap-2">
+                  {project.tech.map((tech) => (
+                    <span class="tag-cosmic text-sm">
+                      {tech}
+                    </span>
+                  ))}
+                </div>
+
+                <!-- Links -->
+                <div class="flex items-center space-x-4 pt-4 border-t border-cosmic-200 dark:border-cosmic-700">
+                  {project.github && (
+                    <a
+                      href={project.github}
+                      class="text-sm font-medium text-nebula-600 dark:text-nebula-400 hover:text-nebula-700 dark:hover:text-nebula-300 transition-colors duration-200 focus-cosmic rounded"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      View Code
+                    </a>
+                  )}
+                  {project.demo && (
+                    <a
+                      href={project.demo}
+                      class="text-sm font-medium text-starlight-600 dark:text-starlight-400 hover:text-starlight-700 dark:hover:text-starlight-300 transition-colors duration-200 focus-cosmic rounded"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      Live Demo
+                    </a>
+                  )}
+                </div>
+              </div>
+            </article>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Other Projects -->
+  <section class="py-20 bg-gradient-to-br from-nebula-50/30 to-starlight-50/30 dark:from-cosmic-800/30 dark:to-cosmic-700/30">
+    <div class="container mx-auto px-6">
+      <div class="max-w-6xl mx-auto">
+        <div class="text-center mb-16">
+          <h2 class="text-4xl font-bold text-gradient-cosmic mb-6">
+            More Projects
+          </h2>
+          <p class="text-xl text-cosmic-600 dark:text-cosmic-400">
+            Experiments, learning projects, and contributions to the community
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {otherProjects.map((project) => (
+            <article class="card-cosmic p-6 hover-lift group">
+              <div class="space-y-4">
+                <!-- Header -->
+                <div class="flex items-start justify-between">
+                  <div class="flex items-center space-x-2">
+                    <span class="text-2xl">{project.emoji}</span>
+                    <div>
+                      <h3 class="text-lg font-bold text-cosmic-900 dark:text-cosmic-100 group-hover:text-nebula-600 dark:group-hover:text-nebula-400 transition-colors duration-200">
+                        {project.title}
+                      </h3>
+                      <span class="inline-block px-2 py-1 text-xs font-medium bg-cosmic-200 dark:bg-cosmic-700 text-cosmic-700 dark:text-cosmic-300 rounded-full">
+                        {project.status}
+                      </span>
+                    </div>
+                  </div>
+                  <div class="flex space-x-1">
+                    {project.github && (
+                      <a
+                        href={project.github}
+                        class="p-1.5 rounded hover:bg-cosmic-100 dark:hover:bg-cosmic-800 transition-colors duration-200 focus-cosmic"
+                        aria-label="View source code"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        <svg class="w-4 h-4 text-cosmic-600 dark:text-cosmic-400" fill="currentColor" viewBox="0 0 24 24">
+                          <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                        </svg>
+                      </a>
+                    )}
+                    {project.demo && (
+                      <a
+                        href={project.demo}
+                        class="p-1.5 rounded hover:bg-cosmic-100 dark:hover:bg-cosmic-800 transition-colors duration-200 focus-cosmic"
+                        aria-label="View live demo"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        <svg class="w-4 h-4 text-cosmic-600 dark:text-cosmic-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                        </svg>
+                      </a>
+                    )}
+                  </div>
+                </div>
+
+                <!-- Description -->
+                <p class="text-cosmic-700 dark:text-cosmic-300 text-sm leading-relaxed">
+                  {project.description}
+                </p>
+
+                <!-- Tech Stack -->
+                <div class="flex flex-wrap gap-1">
+                  {project.tech.slice(0, 4).map((tech) => (
+                    <span class="tag-cosmic text-xs">
+                      {tech}
+                    </span>
+                  ))}
+                  {project.tech.length > 4 && (
+                    <span class="text-xs text-cosmic-500 dark:text-cosmic-400">
+                      +{project.tech.length - 4} more
+                    </span>
+                  )}
+                </div>
+              </div>
+            </article>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Open Source Contributions -->
+  <section class="py-20 bg-white dark:bg-cosmic-900">
+    <div class="container mx-auto px-6">
+      <div class="max-w-4xl mx-auto text-center space-y-8">
+        <h2 class="text-4xl font-bold text-gradient-cosmic">
+          Open Source Contributions
+        </h2>
+        <div class="prose prose-lg prose-cosmic mx-auto">
+          <p class="text-xl leading-relaxed">
+            I believe in giving back to the community that has given me so much. Here are some of the open source projects I've contributed to:
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
+          <div class="card-cosmic p-6 text-left">
+            <div class="flex items-center space-x-3 mb-4">
+              <span class="text-2xl">🚀</span>
+              <div>
+                <h3 class="text-lg font-bold text-cosmic-900 dark:text-cosmic-100">Astro</h3>
+                <p class="text-sm text-cosmic-600 dark:text-cosmic-400">Documentation improvements and bug fixes</p>
+              </div>
+            </div>
+            <p class="text-cosmic-700 dark:text-cosmic-300 text-sm">
+              Contributed to documentation and helped resolve issues related to component hydration and TypeScript integration.
+            </p>
+          </div>
+
+          <div class="card-cosmic p-6 text-left">
+            <div class="flex items-center space-x-3 mb-4">
+              <span class="text-2xl">⚡</span>
+              <div>
+                <h3 class="text-lg font-bold text-cosmic-900 dark:text-cosmic-100">Vite</h3>
+                <p class="text-sm text-cosmic-600 dark:text-cosmic-400">Performance optimizations</p>
+              </div>
+            </div>
+            <p class="text-cosmic-700 dark:text-cosmic-300 text-sm">
+              Submitted patches to improve build performance for large TypeScript projects and fixed edge cases in HMR.
+            </p>
+          </div>
+
+          <div class="card-cosmic p-6 text-left">
+            <div class="flex items-center space-x-3 mb-4">
+              <span class="text-2xl">🎨</span>
+              <div>
+                <h3 class="text-lg font-bold text-cosmic-900 dark:text-cosmic-100">Tailwind CSS</h3>
+                <p class="text-sm text-cosmic-600 dark:text-cosmic-400">Plugin development</p>
+              </div>
+            </div>
+            <p class="text-cosmic-700 dark:text-cosmic-300 text-sm">
+              Created and maintained plugins for animation utilities and contributed to the core typography plugin.
+            </p>
+          </div>
+
+          <div class="card-cosmic p-6 text-left">
+            <div class="flex items-center space-x-3 mb-4">
+              <span class="text-2xl">📚</span>
+              <div>
+                <h3 class="text-lg font-bold text-cosmic-900 dark:text-cosmic-100">MDN Web Docs</h3>
+                <p class="text-sm text-cosmic-600 dark:text-cosmic-400">Content contributions</p>
+              </div>
+            </div>
+            <p class="text-cosmic-700 dark:text-cosmic-300 text-sm">
+              Authored and updated articles on modern JavaScript features and CSS Grid layout patterns.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="py-20 bg-gradient-to-br from-nebula-50/50 to-starlight-50/50 dark:from-cosmic-800/50 dark:to-cosmic-700/50">
+    <div class="container mx-auto px-6">
+      <div class="max-w-4xl mx-auto text-center space-y-8">
+        <h2 class="text-3xl md:text-4xl font-bold text-gradient-cosmic">
+          Want to Collaborate? ✨
+        </h2>
+        <p class="text-xl text-cosmic-600 dark:text-cosmic-400 max-w-2xl mx-auto">
+          I'm always excited to work on interesting projects and contribute to meaningful open source initiatives.
+          Whether it's a new feature, a bug fix, or just brainstorming ideas over coffee, let's build something amazing together!
+        </p>
+
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <a
+            href="/contact"
+            class="btn-cosmic focus-cosmic inline-flex items-center"
+          >
+            <span>💬 Let's Discuss</span>
+          </a>
+          <a
+            href="https://github.com"
+            class="btn-cosmic-outline focus-cosmic inline-flex items-center"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <span>🐱 Follow on GitHub</span>
+          </a>
+        </div>
+
+        <div class="pt-8 border-t border-cosmic-200 dark:border-cosmic-700">
+          <p class="text-sm text-cosmic-600 dark:text-cosmic-400">
+            All projects are built with <strong>accessibility</strong>, <strong>performance</strong>, and <strong>maintainability</strong> in mind.
+            Code is poetry, and every line should tell a story. ✍️
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  /* Project card hover effects */
+  .hover-lift:hover {
+    transform: translateY(-4px);
+  }
+
+  /* Responsive grid adjustments */
+  @media (max-width: 640px) {
+    .grid-cols-1.md\:grid-cols-2.lg\:grid-cols-3 {
+      grid-template-columns: repeat(1, minmax(0, 1fr));
+    }
+  }
+
+  /* Link hover effects */
+  .card-cosmic a {
+    transition: all 0.2s ease-in-out;
+  }
+
+  .card-cosmic a:hover {
+    transform: scale(1.05);
+  }
+</style>

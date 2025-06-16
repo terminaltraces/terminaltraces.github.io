@@ -1,0 +1,202 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import HeroSection from '../components/HeroSection.astro';
+import Section from '../components/Section.astro';
+import BlogPostCard from '../components/BlogPostCard.astro';
+import Button from '../components/Button.astro';
+import StatsCard from '../components/StatsCard.astro';
+import CTASection from '../components/CTASection.astro';
+import { getCollection } from 'astro:content';
+
+const allBlogPosts = await getCollection('blog');
+const recentPosts = allBlogPosts
+  .filter(post => !post.data.draft)
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
+  .slice(0, 3);
+---
+
+<BaseLayout
+  title="Drew's Blog - Cosmic Code & Coffee ✨"
+  description="Welcome to my cozy corner of the internet! I write about code, coffee, and the beautiful chaos of building things that matter."
+>
+  <!-- Hero Section -->
+  <HeroSection
+    title="Hello, I'm Drew"
+    subtitle="Welcome to my cosmic corner ✨"
+    description="I write about code, coffee, and the beautiful chaos of building things that matter. Join me on this journey through the digital universe! 🚀"
+    size="xl"
+    showScrollIndicator={true}
+  >
+    <!-- CTA Buttons -->
+    <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
+      <Button
+        variant="cosmic"
+        href="/blog"
+        class="hover:animate-glow"
+      >
+        📝 Read My Thoughts
+      </Button>
+      <Button
+        variant="cosmic-outline"
+        href="/readme"
+      >
+        💖 Working With Me
+      </Button>
+    </div>
+
+    <!-- Fun Stats -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-2xl mx-auto mt-12">
+      <StatsCard
+        icon="☕"
+        value="∞"
+        label="Cups of Coffee"
+        gradient="starlight"
+        animated={true}
+      />
+      <StatsCard
+        icon="🌟"
+        value={allBlogPosts.length}
+        label="Blog Posts"
+        gradient="cosmic"
+        animated={true}
+      />
+      <StatsCard
+        icon="🚀"
+        value="∞"
+        label="Lines of Code"
+        gradient="starlight"
+        animated={true}
+      />
+    </div>
+  </HeroSection>
+
+  <!-- Recent Blog Posts -->
+  <Section background="white">
+    <div class="text-center mb-16">
+      <h2 class="text-4xl md:text-5xl font-bold text-gradient-cosmic mb-6">
+        Latest from the Blog
+      </h2>
+      <p class="text-xl text-cosmic-600 dark:text-cosmic-400 max-w-2xl mx-auto">
+        Recent thoughts, discoveries, and late-night coding adventures ✨
+      </p>
+    </div>
+
+    {recentPosts.length > 0 ? (
+      <>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
+          {recentPosts.map((post) => (
+            <BlogPostCard
+              title={post.data.title}
+              description={post.data.description}
+              date={post.data.date}
+              slug={post.slug}
+              tags={post.data.tags}
+            />
+          ))}
+        </div>
+
+        <!-- View All Posts Button -->
+        <div class="text-center">
+          <Button
+            variant="starlight"
+            href="/blog"
+            class="inline-flex items-center"
+          >
+            <span>View All Posts</span>
+            <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"></path>
+            </svg>
+          </Button>
+        </div>
+      </>
+    ) : (
+      <div class="text-center py-12">
+        <div class="text-6xl mb-4">✍️</div>
+        <h3 class="text-2xl font-bold text-cosmic-900 dark:text-cosmic-100 mb-2">
+          Blog posts coming soon!
+        </h3>
+        <p class="text-cosmic-600 dark:text-cosmic-400">
+          I'm brewing up some amazing content. Check back soon! ☕
+        </p>
+      </div>
+    )}
+  </Section>
+
+  <!-- About Preview -->
+  <Section background="gradient">
+    <div class="max-w-4xl mx-auto text-center space-y-8">
+      <h2 class="text-4xl md:text-5xl font-bold text-gradient-cosmic">
+        A Little About Me
+      </h2>
+
+      <div class="prose prose-lg mx-auto text-cosmic-700 dark:text-cosmic-300">
+        <p class="text-xl leading-relaxed">
+          I'm a passionate developer who believes that the best code is written with curiosity,
+          empathy, and a really good cup of coffee. When I'm not crafting digital experiences,
+          you'll find me stargazing, reading sci-fi, or experimenting with new brewing techniques.
+        </p>
+      </div>
+
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <Button
+          variant="nebula"
+          href="/about"
+          class="inline-flex items-center"
+        >
+          <span>Learn More About Me</span>
+          <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"></path>
+          </svg>
+        </Button>
+        <Button
+          variant="cosmic-outline"
+          href="/contact"
+        >
+          💬 Let's Chat
+        </Button>
+      </div>
+    </div>
+  </Section>
+
+  <!-- Newsletter Signup -->
+  <CTASection
+    title="Stay in the Loop ✨"
+    description="Get notified when I publish new posts about code, coffee, and cosmic adventures."
+    background="dark"
+    size="lg"
+  >
+    <!-- Simple email signup form -->
+    <form class="space-y-4 max-w-md mx-auto" data-netlify="true">
+      <div class="flex flex-col sm:flex-row gap-3">
+        <input
+          type="email"
+          name="email"
+          placeholder="your@email.com"
+          class="flex-1 px-4 py-3 rounded-lg bg-cosmic-800 border border-cosmic-700 text-white placeholder-cosmic-400 focus:outline-none focus:ring-2 focus:ring-nebula-500 focus:border-transparent"
+          required
+        />
+        <Button
+          variant="starlight"
+          type="submit"
+          class="whitespace-nowrap"
+        >
+          Subscribe
+        </Button>
+      </div>
+      <p class="text-xs text-cosmic-400">
+        No spam, just good vibes and quality content. Unsubscribe anytime.
+      </p>
+    </form>
+  </CTASection>
+</BaseLayout>
+
+<style>
+  /* Custom button style for nebula variant */
+  .btn-nebula {
+    @apply px-6 py-3 rounded-lg font-medium transition-all duration-200;
+    @apply bg-gradient-to-r from-nebula-400 to-nebula-500;
+    @apply text-white shadow-lg hover:shadow-xl;
+    @apply hover:from-nebula-500 hover:to-nebula-600;
+    @apply transform hover:scale-105 active:scale-95;
+  }
+</style>

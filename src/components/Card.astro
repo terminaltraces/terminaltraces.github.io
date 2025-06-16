@@ -1,0 +1,53 @@
+---
+export interface Props {
+  variant?: 'default' | 'hover-lift' | 'glow' | 'bordered';
+  padding?: 'sm' | 'md' | 'lg' | 'xl';
+  background?: 'default' | 'transparent' | 'gradient';
+  class?: string;
+  href?: string;
+  tag?: 'div' | 'article' | 'section';
+}
+
+const {
+  variant = 'default',
+  padding = 'md',
+  background = 'default',
+  class: className = "",
+  href,
+  tag = 'div'
+} = Astro.props;
+
+const paddingClasses = {
+  sm: 'p-4',
+  md: 'p-6',
+  lg: 'p-8',
+  xl: 'p-10'
+};
+
+const variantClasses = {
+  default: 'card-cosmic',
+  'hover-lift': 'card-cosmic hover-lift',
+  glow: 'card-cosmic glow-nebula',
+  bordered: 'card-cosmic border-2 border-cosmic-300 dark:border-cosmic-600'
+};
+
+const backgroundClasses = {
+  default: '',
+  transparent: 'bg-transparent border-transparent',
+  gradient: 'bg-gradient-to-br from-nebula-50/20 to-starlight-50/20 dark:from-nebula-900/20 dark:to-starlight-900/20'
+};
+
+const baseClasses = `${variantClasses[variant]} ${paddingClasses[padding]} ${backgroundClasses[background]} ${className}`;
+
+const Tag = tag;
+---
+
+{href ? (
+  <a href={href} class={`block ${baseClasses} focus-cosmic rounded-xl`}>
+    <slot />
+  </a>
+) : (
+  <Tag class={baseClasses}>
+    <slot />
+  </Tag>
+)}

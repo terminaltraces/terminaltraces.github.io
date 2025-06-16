@@ -1,0 +1,104 @@
+---
+export interface Props {
+  title: string;
+  description: string;
+  date: Date;
+  slug: string;
+  tags: string[];
+  featured?: boolean;
+  showTags?: boolean;
+  showDate?: boolean;
+  showDescription?: boolean;
+  class?: string;
+}
+
+const {
+  title,
+  description,
+  date,
+  slug,
+  tags,
+  featured = false,
+  showTags = true,
+  showDate = true,
+  showDescription = true,
+  class: className = ""
+} = Astro.props;
+
+const baseUrl = '/blog/';
+const postUrl = `${baseUrl}${slug}`;
+---
+
+<article class={`card-cosmic p-6 hover-lift group ${featured ? 'ring-2 ring-nebula-300 dark:ring-nebula-600' : ''} ${className}`}>
+  <div class="space-y-4">
+    <!-- Date -->
+    {showDate && (
+      <time
+        datetime={date.toISOString()}
+        class="text-sm text-cosmic-500 dark:text-cosmic-400"
+      >
+        {date.toLocaleDateString('en-US', {
+          year: 'numeric',
+          month: 'long',
+          day: 'numeric'
+        })}
+      </time>
+    )}
+
+    <!-- Featured Badge -->
+    {featured && (
+      <div class="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-nebula-100 text-nebula-800 dark:bg-nebula-900 dark:text-nebula-200">
+        ⭐ Featured
+      </div>
+    )}
+
+    <!-- Title -->
+    <h3 class="text-xl font-bold text-cosmic-900 dark:text-cosmic-100 group-hover:text-nebula-600 dark:group-hover:text-nebula-400 transition-colors duration-200">
+      <a href={postUrl} class="focus-cosmic rounded">
+        {title}
+      </a>
+    </h3>
+
+    <!-- Description -->
+    {showDescription && (
+      <p class="text-cosmic-600 dark:text-cosmic-400 line-clamp-3">
+        {description}
+      </p>
+    )}
+
+    <!-- Tags -->
+    {showTags && tags.length > 0 && (
+      <div class="flex flex-wrap gap-2">
+        {tags.slice(0, 3).map((tag) => (
+          <span class="tag-cosmic text-xs">
+            #{tag}
+          </span>
+        ))}
+        {tags.length > 3 && (
+          <span class="text-xs text-cosmic-500 dark:text-cosmic-400">
+            +{tags.length - 3} more
+          </span>
+        )}
+      </div>
+    )}
+
+    <!-- Read More -->
+    <div class="flex items-center text-sm text-nebula-600 dark:text-nebula-400 group-hover:text-nebula-700 dark:group-hover:text-nebula-300 transition-colors duration-200">
+      <a href={postUrl} class="font-medium focus-cosmic rounded">
+        Read more
+      </a>
+      <svg class="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+      </svg>
+    </div>
+  </div>
+</article>
+
+<style>
+  .line-clamp-3 {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+</style>

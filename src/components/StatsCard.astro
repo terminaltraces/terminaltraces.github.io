@@ -1,0 +1,67 @@
+---
+export interface Props {
+  icon: string;
+  value: string | number;
+  label: string;
+  gradient?: 'cosmic' | 'starlight' | 'nebula' | 'coffee';
+  size?: 'sm' | 'md' | 'lg';
+  variant?: 'default' | 'minimal' | 'bordered';
+  animated?: boolean;
+  class?: string;
+}
+
+const {
+  icon,
+  value,
+  label,
+  gradient = 'cosmic',
+  size = 'md',
+  variant = 'default',
+  animated = false,
+  class: className = ""
+} = Astro.props;
+
+const sizeClasses = {
+  sm: {
+    card: 'p-4',
+    icon: 'text-2xl mb-1',
+    value: 'text-lg',
+    label: 'text-xs'
+  },
+  md: {
+    card: 'p-6',
+    icon: 'text-3xl mb-2',
+    value: 'text-2xl',
+    label: 'text-sm'
+  },
+  lg: {
+    card: 'p-8',
+    icon: 'text-4xl mb-3',
+    value: 'text-3xl',
+    label: 'text-base'
+  }
+};
+
+const gradientClasses = {
+  'cosmic': 'text-gradient-cosmic',
+  'starlight': 'text-gradient-starlight',
+  'nebula': 'bg-gradient-to-r from-nebula-500 to-nebula-600 bg-clip-text text-transparent',
+  'coffee': 'bg-gradient-to-r from-coffee-500 to-coffee-600 bg-clip-text text-transparent'
+};
+
+const variantClasses = {
+  'default': 'card-cosmic',
+  'minimal': 'bg-transparent',
+  'bordered': 'card-cosmic border-2 border-cosmic-300 dark:border-cosmic-600'
+};
+---
+
+<div class={`${variantClasses[variant]} ${sizeClasses[size].card} ${animated ? 'hover-lift' : ''} text-center ${className}`}>
+  <div class={sizeClasses[size].icon}>{icon}</div>
+  <div class={`${sizeClasses[size].value} font-bold ${gradientClasses[gradient]}`}>
+    {value}
+  </div>
+  <div class={`${sizeClasses[size].label} text-cosmic-600 dark:text-cosmic-400`}>
+    {label}
+  </div>
+</div>

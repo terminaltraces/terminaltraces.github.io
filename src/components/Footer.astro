@@ -1,0 +1,75 @@
+---
+import SocialIcon from './SocialIcon.astro';
+
+export interface Props {
+  class?: string;
+}
+
+const { class: className = "" } = Astro.props;
+
+const quickLinks = [
+  { href: '/readme', label: '💖 Working With Me' },
+  { href: '/blog', label: '📝 Latest Posts' },
+  { href: '/projects', label: '🚀 Projects' }
+];
+
+const socialLinks = [
+  { href: 'https://github.com', icon: 'github' as const, label: 'GitHub' },
+  { href: 'https://twitter.com', icon: 'twitter' as const, label: 'Twitter' },
+  { href: 'https://linkedin.com', icon: 'linkedin' as const, label: 'LinkedIn' }
+];
+---
+
+<footer class={`bg-cosmic-50 dark:bg-cosmic-900 border-t border-cosmic-200 dark:border-cosmic-700 mt-20 ${className}`}>
+  <div class="container mx-auto px-6 py-12">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      <!-- Brand & Description -->
+      <div class="space-y-4">
+        <div class="text-xl font-bold text-gradient-cosmic">✨ Drew</div>
+        <p class="text-cosmic-600 dark:text-cosmic-400 text-sm">
+          A cozy corner of the internet where code meets coffee and late-night thoughts become blog posts.
+        </p>
+      </div>
+
+      <!-- Quick Links -->
+      <div class="space-y-4">
+        <h3 class="font-semibold text-cosmic-900 dark:text-cosmic-100">
+          Quick Links
+        </h3>
+        <div class="space-y-2 text-sm">
+          {quickLinks.map(link => (
+            <a
+              href={link.href}
+              class="block text-cosmic-600 dark:text-cosmic-400 hover:text-nebula-600 dark:hover:text-nebula-400 transition-colors duration-200"
+            >
+              {link.label}
+            </a>
+          ))}
+        </div>
+      </div>
+
+      <!-- Social Links -->
+      <div class="space-y-4">
+        <h3 class="font-semibold text-cosmic-900 dark:text-cosmic-100">
+          Connect
+        </h3>
+        <div class="flex space-x-4">
+          {socialLinks.map(social => (
+            <SocialIcon
+              href={social.href}
+              icon={social.icon}
+              ariaLabel={social.label}
+            />
+          ))}
+        </div>
+      </div>
+    </div>
+
+    <!-- Copyright -->
+    <div class="border-t border-cosmic-200 dark:border-cosmic-700 mt-8 pt-8 text-center text-sm text-cosmic-600 dark:text-cosmic-400">
+      <p>
+        &copy; {new Date().getFullYear()} Drew. Made with ☕ and ✨ using Astro.
+      </p>
+    </div>
+  </div>
+</footer>

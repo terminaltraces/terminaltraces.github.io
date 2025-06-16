@@ -1,0 +1,109 @@
+---
+export interface Props {
+  title: string;
+  description?: string;
+  primaryButton?: {
+    text: string;
+    href: string;
+    variant?: 'cosmic' | 'starlight' | 'nebula';
+  };
+  secondaryButton?: {
+    text: string;
+    href: string;
+    variant?: 'cosmic-outline' | 'ghost';
+  };
+  background?: 'gradient' | 'cosmic' | 'nebula' | 'starlight' | 'dark';
+  size?: 'sm' | 'md' | 'lg';
+  centered?: boolean;
+  class?: string;
+}
+
+const {
+  title,
+  description,
+  primaryButton,
+  secondaryButton,
+  background = 'gradient',
+  size = 'md',
+  centered = true,
+  class: className = ""
+} = Astro.props;
+
+const sizeClasses = {
+  sm: 'py-12',
+  md: 'py-16',
+  lg: 'py-20'
+};
+
+const backgroundClasses = {
+  gradient: 'bg-gradient-to-br from-nebula-50/50 to-starlight-50/50 dark:from-cosmic-800/50 dark:to-cosmic-700/50',
+  cosmic: 'bg-cosmic-50 dark:bg-cosmic-900',
+  nebula: 'bg-gradient-to-br from-nebula-100 to-nebula-200 dark:from-nebula-900 dark:to-nebula-800',
+  starlight: 'bg-gradient-to-br from-starlight-100 to-starlight-200 dark:from-starlight-900 dark:to-starlight-800',
+  dark: 'bg-cosmic-900 dark:bg-cosmic-950'
+};
+
+const titleSizes = {
+  sm: 'text-2xl md:text-3xl',
+  md: 'text-3xl md:text-4xl',
+  lg: 'text-4xl md:text-5xl'
+};
+
+const descriptionSizes = {
+  sm: 'text-base md:text-lg',
+  md: 'text-lg md:text-xl',
+  lg: 'text-xl md:text-2xl'
+};
+
+const buttonVariantClasses = {
+  cosmic: 'btn-cosmic',
+  starlight: 'btn-starlight',
+  nebula: 'btn-nebula',
+  'cosmic-outline': 'btn-cosmic-outline',
+  ghost: 'text-cosmic-700 dark:text-cosmic-300 hover:text-nebula-600 dark:hover:text-nebula-400 hover:bg-cosmic-100 dark:hover:bg-cosmic-800 transition-colors duration-200 px-6 py-3 rounded-lg font-medium'
+};
+---
+
+<section class={`${sizeClasses[size]} ${backgroundClasses[background]} ${className}`}>
+  <div class="container mx-auto px-6">
+    <div class={`max-w-4xl mx-auto space-y-8 ${centered ? 'text-center' : ''}`}>
+      <div class="space-y-4">
+        <h2 class={`${titleSizes[size]} font-bold text-gradient-cosmic`}>
+          {title}
+        </h2>
+
+        {description && (
+          <p class={`${descriptionSizes[size]} text-cosmic-600 dark:text-cosmic-400 ${centered ? 'max-w-2xl mx-auto' : ''}`}>
+            {description}
+          </p>
+        )}
+      </div>
+
+      <!-- Slot for custom content -->
+      <slot />
+
+      <!-- Buttons -->
+      {(primaryButton || secondaryButton) && (
+        <div class={`flex flex-col sm:flex-row gap-4 ${centered ? 'justify-center' : ''}`}>
+          {primaryButton && (
+            <a
+              href={primaryButton.href}
+              class={`${buttonVariantClasses[primaryButton.variant || 'cosmic']} focus-cosmic inline-flex items-center justify-center`}
+            >
+              {primaryButton.text}
+            </a>
+          )}
+
+          {secondaryButton && (
+            <a
+              href={secondaryButton.href}
+              class={`${buttonVariantClasses[secondaryButton.variant || 'cosmic-outline']} focus-cosmic inline-flex items-center justify-center`}
+            >
+              {secondaryButton.text}
+            </a>
+          )}
+        </div>
+      )}
+    </div>
+  </div>
+</section>
