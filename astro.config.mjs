@@ -20,4 +20,6 @@ export default defineConfig({
   },
   site: 'https://terminaltraces.github.io',
   base: '/',
+  output: 'static',
+  trailingSlash: 'ignore',
 });

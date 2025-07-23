@@ -1,5 +1,5 @@
 {
-  "name": "drews-astro-blog",
+  "name": "terminaltraces-site",
   "type": "module",
   "version": "0.0.1",
   "scripts": {
@@ -7,7 +7,8 @@
     "start": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "deploy": "npm run build"
   },
   "dependencies": {
     "@astrojs/check": "^0.9.4",
