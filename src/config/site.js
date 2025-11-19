@@ -37,7 +37,7 @@ export const socialLinks = [
 
 // Component configuration
 export const recentPostsConfig = {
-  maxPosts: 5,
+  maxPosts: 3,
   dateFormat: {
     year: 'numeric',
     month: 'long',
