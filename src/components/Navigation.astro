@@ -1,14 +1,7 @@
 ---
 import ThemeToggle from './ThemeToggle.jsx';
-
-const navItems = [
-  { href: '/', label: 'Home' },
-  { href: '/about', label: 'About' },
-  { href: '/projects', label: 'Projects' },
-  { href: '/blog', label: 'Writing' },
-  { href: '/experience', label: 'Experience' },
-  { href: '/contact', label: 'Contact' },
-];
+import MenuIcon from './icons/MenuIcon.astro';
+import { navItems, siteConfig } from '../config/site.js';
 ---
 
 <nav class="sticky top-0 z-40 backdrop-blur-md bg-white/80 dark:bg-gray-900/80 border-b border-gray-200 dark:border-gray-800">
@@ -16,7 +9,7 @@ const navItems = [
     <div class="flex justify-between items-center h-16">
       <!-- Logo -->
       <a href="/" class="font-bold text-2xl gradient-text hover:scale-110 transition-transform duration-200">
-        ✨ terminaltraces
+        {siteConfig.branding}
       </a>
 
       <!-- Desktop Navigation -->
@@ -39,9 +32,7 @@ const navItems = [
           aria-label="Toggle mobile menu"
           aria-expanded="false"
         >
-          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
-          </svg>
+          <MenuIcon />
         </button>
       </div>
     </div>
