@@ -71,7 +71,11 @@
   }
 
   .gradient-text {
-    @apply bg-gradient-to-r from-galaxy-600 via-nebula-500 to-stardust-400 bg-clip-text text-transparent;
+    @apply bg-gradient-to-r from-galaxy-700 via-nebula-600 to-stardust-600 bg-clip-text text-transparent;
+  }
+
+  html.dark .gradient-text {
+    @apply bg-gradient-to-r from-galaxy-300 via-nebula-400 to-stardust-300 bg-clip-text text-transparent;
   }
 
   .nav-link {
