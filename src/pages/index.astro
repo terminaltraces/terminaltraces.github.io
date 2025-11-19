@@ -1,0 +1,86 @@
+---
+import Layout from '../layouts/Layout.astro';
+import RecentPosts from '../components/RecentPosts.astro';
+
+const stars = Array.from({ length: 50 }, (_, i) => ({
+  id: i,
+  x: Math.random() * 100,
+  y: Math.random() * 100,
+  size: Math.random() * 2 + 1,
+  duration: Math.random() * 3 + 2,
+}));
+---
+
+<Layout title="terminaltraces | Home">
+  <!-- Hero Section -->
+  <section class="relative min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8 overflow-hidden">
+    <!-- Animated stars background -->
+    <div class="absolute inset-0 -z-10">
+      {stars.map((star) => (
+        <div
+          class="star animate-twinkle"
+          style={{
+            left: `${star.x}%`,
+            top: `${star.y}%`,
+            width: `${star.size}px`,
+            height: `${star.size}px`,
+            animationDuration: `${star.duration}s`,
+          }}
+        />
+      ))}
+    </div>
+
+    <div class="max-w-4xl mx-auto text-center">
+      <div class="mb-8 animate-float">
+        <h1 class="text-6xl md:text-7xl font-bold mb-6 gradient-text leading-tight">
+          Hello, I'm terminaltraces
+        </h1>
+        <p class="text-xl md:text-2xl text-gray-700 dark:text-gray-300 mb-8 leading-relaxed">
+          A passionate developer building beautiful, accessible digital experiences with a touch of cosmic charm.
+          I love turning creative ideas into functional reality, one line of code at a time.
+        </p>
+      </div>
+
+      <div class="flex flex-col sm:flex-row gap-4 justify-center mb-12">
+        <a href="/about" class="btn-primary">Learn More About Me</a>
+        <a href="/contact" class="btn-secondary">Get In Touch</a>
+      </div>
+
+      <div class="flex flex-col sm:flex-row gap-6 justify-center text-center">
+        <div class="card max-w-sm">
+          <h3 class="text-lg font-semibold mb-2">📄 Resume</h3>
+          <p class="text-gray-600 dark:text-gray-400 mb-4">Check out my professional experience and skills</p>
+          <a href="/experience" class="text-galaxy-600 dark:text-galaxy-300 font-semibold hover:underline">
+            View Resume →
+          </a>
+        </div>
+
+        <div class="card max-w-sm">
+          <h3 class="text-lg font-semibold mb-2">🚀 Projects</h3>
+          <p class="text-gray-600 dark:text-gray-400 mb-4">Explore the projects I've worked on</p>
+          <a href="/projects" class="text-galaxy-600 dark:text-galaxy-300 font-semibold hover:underline">
+            View Projects →
+          </a>
+        </div>
+
+        <div class="card max-w-sm">
+          <h3 class="text-lg font-semibold mb-2">📚 README</h3>
+          <p class="text-gray-600 dark:text-gray-400 mb-4">A quick overview of who I am</p>
+          <a href="/about" class="text-galaxy-600 dark:text-galaxy-300 font-semibold hover:underline">
+            Read README →
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Scroll indicator -->
+    <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
+      <svg class="w-6 h-6 text-galaxy-600 dark:text-galaxy-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+      </svg>
+    </div>
+  </section>
+
+  <!-- Recent Posts Section -->
+  <RecentPosts />
+</Layout>

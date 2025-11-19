@@ -1,0 +1,102 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply transition-colors duration-300;
+  }
+
+  /* Light mode (default) */
+  :root {
+    --bg-primary: #ffffff;
+    --bg-secondary: #f8f4ff;
+    --bg-tertiary: #f0e8ff;
+    --text-primary: #2a1450;
+    --text-secondary: #4a2480;
+    --text-tertiary: #6d37b0;
+    --border-color: #e0d0ff;
+    --accent-primary: #a368ff;
+    --accent-secondary: #ff7890;
+  }
+
+  /* Dark mode */
+  html.dark {
+    --bg-primary: #0f0a1a;
+    --bg-secondary: #1a0f30;
+    --bg-tertiary: #2a1450;
+    --text-primary: #f8f4ff;
+    --text-secondary: #e0d0ff;
+    --text-tertiary: #b890ff;
+    --border-color: #4a2480;
+    --accent-primary: #d1b8ff;
+    --accent-secondary: #ff9db0;
+  }
+
+  body {
+    @apply bg-white dark:bg-[#0f0a1a] text-gray-900 dark:text-gray-100;
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply px-6 py-2 rounded-full font-medium transition-all duration-200 hover:scale-105;
+    background: linear-gradient(135deg, #a368ff, #ff7890);
+    color: white;
+  }
+
+  .btn-primary:hover {
+    box-shadow: 0 0 20px rgba(163, 104, 255, 0.4);
+  }
+
+  .btn-secondary {
+    @apply px-6 py-2 rounded-full font-medium border-2 border-galaxy-500 dark:border-galaxy-400 text-galaxy-700 dark:text-galaxy-200 transition-all duration-200 hover:scale-105 dark:bg-galaxy-900/20;
+  }
+
+  .btn-secondary:hover {
+    @apply bg-galaxy-100 dark:bg-galaxy-800;
+  }
+
+  .card {
+    @apply bg-white dark:bg-gray-800 rounded-2xl p-6 border border-gray-200 dark:border-gray-700 transition-all duration-200 hover:shadow-lg;
+  }
+
+  .star {
+    @apply absolute w-1 h-1 bg-gradient-to-r from-yellow-200 to-yellow-100 rounded-full;
+    box-shadow: 0 0 4px rgba(255, 193, 7, 0.6);
+  }
+
+  .gradient-text {
+    @apply bg-gradient-to-r from-galaxy-600 via-nebula-500 to-stardust-400 bg-clip-text text-transparent;
+  }
+
+  .nav-link {
+    @apply relative px-4 py-2 font-medium text-gray-700 dark:text-gray-300 transition-colors duration-200 after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-gradient-to-r after:from-galaxy-500 after:to-nebula-500 after:transition-all after:duration-300 hover:after:w-full;
+  }
+
+  .section-title {
+    @apply text-4xl font-bold mb-8 text-center gradient-text;
+  }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-gray-100 dark:bg-gray-900;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-gradient-to-b from-galaxy-500 to-nebula-500 rounded-full;
+  background: linear-gradient(to bottom, #a368ff, #ff7890);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-gradient-to-b from-galaxy-600 to-nebula-600;
+}

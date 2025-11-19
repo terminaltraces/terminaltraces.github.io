@@ -1,0 +1,159 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { getCollection } from 'astro:content';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('blog');
+  return posts.map((post) => ({
+    params: { slug: post.slug },
+    props: { post },
+  }));
+}
+
+interface Props {
+  post: any;
+}
+
+const { post } = Astro.props;
+const { Content } = await post.render();
+
+// Get all posts for navigation
+const allPosts = await getCollection('blog');
+const sortedPosts = allPosts.sort(
+  (a, b) => new Date(b.data.pubDate).getTime() - new Date(a.data.pubDate).getTime()
+);
+const currentIndex = sortedPosts.findIndex((p) => p.slug === post.slug);
+const previousPost = sortedPosts[currentIndex + 1];
+const nextPost = sortedPosts[currentIndex - 1];
+---
+
+<Layout title={`${post.data.title} | terminaltraces`} description={post.data.description}>
+  <article class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+    <!-- Header -->
+    <header class="mb-12">
+      <a href="/blog" class="inline-flex items-center text-galaxy-600 dark:text-galaxy-300 hover:gap-2 transition-all mb-6">
+        <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+        </svg>
+        Back to Blog
+      </a>
+
+      <h1 class="text-5xl font-bold mb-4 gradient-text">{post.data.title}</h1>
+
+      <div class="flex flex-col sm:flex-row sm:items-center sm:gap-4 mb-6 text-gray-600 dark:text-gray-400">
+        <time datetime={post.data.pubDate.toISOString()}>
+          {post.data.pubDate.toLocaleDateString('en-US', {
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric',
+          })}
+        </time>
+        <span class="hidden sm:inline">•</span>
+        <span>{Math.ceil(post.body.split(' ').length / 200)} min read</span>
+      </div>
+
+      {post.data.tags && post.data.tags.length > 0 && (
+        <div class="flex flex-wrap gap-2">
+          {post.data.tags.map((tag) => (
+            <span class="text-xs px-3 py-1 rounded-full bg-galaxy-100 dark:bg-galaxy-900 text-galaxy-700 dark:text-galaxy-200">
+              {tag}
+            </span>
+          ))}
+        </div>
+      )}
+    </header>
+
+    <!-- Content -->
+    <div class="prose dark:prose-invert max-w-none mb-16">
+      <Content />
+    </div>
+
+    <!-- Navigation -->
+    {(previousPost || nextPost) && (
+      <nav class="grid grid-cols-1 md:grid-cols-2 gap-6 border-t border-gray-200 dark:border-gray-800 pt-12">
+        {previousPost ? (
+          <a href={`/blog/${previousPost.slug}`} class="card group">
+            <div class="flex items-start gap-3">
+              <svg class="w-5 h-5 text-galaxy-600 dark:text-galaxy-300 flex-shrink-0 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+              </svg>
+              <div>
+                <p class="text-sm text-gray-600 dark:text-gray-400 mb-1">← Previous</p>
+                <p class="font-semibold group-hover:text-galaxy-600 dark:group-hover:text-galaxy-300 transition-colors">
+                  {previousPost.data.title}
+                </p>
+              </div>
+            </div>
+          </a>
+        ) : (
+          <div />
+        )}
+
+        {nextPost ? (
+          <a href={`/blog/${nextPost.slug}`} class="card group text-right md:text-left">
+            <div class="flex items-start gap-3 md:flex-row-reverse">
+              <svg class="w-5 h-5 text-galaxy-600 dark:text-galaxy-300 flex-shrink-0 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+              </svg>
+              <div>
+                <p class="text-sm text-gray-600 dark:text-gray-400 mb-1">Next →</p>
+                <p class="font-semibold group-hover:text-galaxy-600 dark:group-hover:text-galaxy-300 transition-colors">
+                  {nextPost.data.title}
+                </p>
+              </div>
+            </div>
+          </a>
+        ) : (
+          <div />
+        )}
+      </nav>
+    )}
+  </article>
+</Layout>
+
+<style>
+  :global(.prose) {
+    @apply text-gray-900 dark:text-gray-100;
+  }
+
+  :global(.prose h2) {
+    @apply text-3xl font-bold mt-8 mb-4 text-gray-900 dark:text-gray-100;
+  }
+
+  :global(.prose h3) {
+    @apply text-2xl font-bold mt-6 mb-3 text-gray-900 dark:text-gray-100;
+  }
+
+  :global(.prose p) {
+    @apply mb-4 leading-relaxed;
+  }
+
+  :global(.prose code) {
+    @apply bg-galaxy-100 dark:bg-galaxy-900 text-galaxy-700 dark:text-galaxy-200 px-2 py-1 rounded;
+  }
+
+  :global(.prose pre) {
+    @apply bg-gray-900 dark:bg-black text-gray-100 p-4 rounded-lg overflow-x-auto mb-4;
+  }
+
+  :global(.prose pre code) {
+    @apply bg-transparent text-gray-100 p-0;
+  }
+
+  :global(.prose a) {
+    @apply text-galaxy-600 dark:text-galaxy-300 hover:underline;
+  }
+
+  :global(.prose ul),
+  :global(.prose ol) {
+    @apply ml-6 mb-4;
+  }
+
+  :global(.prose li) {
+    @apply mb-2;
+  }
+
+  :global(.prose blockquote) {
+    @apply border-l-4 border-galaxy-500 pl-4 italic text-gray-600 dark:text-gray-400 my-4;
+  }
+</style>

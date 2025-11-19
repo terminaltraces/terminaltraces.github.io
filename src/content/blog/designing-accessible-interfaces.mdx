@@ -1,0 +1,100 @@
+---
+title: "Designing Accessible Interfaces: Everyone Deserves Good Design"
+description: "Accessibility isn't an afterthought—it's a fundamental principle. Here's how to build inclusive digital experiences."
+pubDate: 2024-11-10
+tags: ["accessibility", "design", "web-standards"]
+author: "terminaltraces"
+---
+
+# Designing Accessible Interfaces
+
+Accessibility in web design is often treated as a nice-to-have, but it's essential. Every user deserves a great experience, regardless of their abilities.
+
+## What is Web Accessibility?
+
+Web accessibility means designing and developing websites that work for everyone, including people with:
+
+- Visual impairments
+- Hearing impairments
+- Motor disabilities
+- Cognitive disabilities
+- Temporary disabilities (like a broken arm)
+
+## The WCAG Standards
+
+The Web Content Accessibility Guidelines (WCAG) provide a framework for creating accessible content. The core principles are:
+
+1. **Perceivable** - Users can see or hear the content
+2. **Operable** - Users can navigate using keyboard alone
+3. **Understandable** - Content is clear and navigable
+4. **Robust** - Works with assistive technologies
+
+## Practical Tips
+
+### 1. Semantic HTML
+
+Use proper HTML elements for their intended purpose:
+
+```html
+<!-- ✅ Good -->
+<button>Click me</button>
+<nav>Navigation</nav>
+<main>Main content</main>
+
+<!-- ❌ Avoid -->
+<div onclick="handleClick()">Click me</div>
+```
+
+### 2. Color Contrast
+
+Text should have sufficient contrast against its background. Aim for at least 4.5:1 for normal text.
+
+### 3. Keyboard Navigation
+
+All functionality should be accessible via keyboard:
+
+```html
+<!-- Ensure proper focus management -->
+<button onKeyDown={(e) => e.key === 'Enter' && handleClick()}>
+  Accessible Button
+</button>
+```
+
+### 4. Alt Text for Images
+
+Every image needs descriptive alt text:
+
+```html
+<img src="galaxy.jpg" alt="A vibrant purple and pink galaxy with stars" />
+```
+
+### 5. ARIA Labels
+
+Use ARIA attributes when semantics aren't sufficient:
+
+```html
+<button aria-label="Close menu" aria-expanded="false">×</button>
+```
+
+## Testing for Accessibility
+
+- Use screen readers like NVDA or VoiceOver
+- Test keyboard-only navigation
+- Use accessibility audit tools like axe DevTools
+- Have people with disabilities test your site
+
+## The Business Case
+
+Beyond ethics, accessibility improves:
+
+- **SEO** - Better semantic markup helps search engines
+- **Performance** - Accessible code is often more performant
+- **Usability** - Benefits everyone, not just people with disabilities
+
+## Resources
+
+- [WCAG Guidelines](https://www.w3.org/WAI/WCAG21/quickref/)
+- [WebAIM](https://webaim.org/)
+- [The A11y Project](https://www.a11yproject.com/)
+
+Remember: Accessibility is not a checklist item—it's a mindset. Build with everyone in mind.

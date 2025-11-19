@@ -1,0 +1,231 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="terminaltraces | Experience">
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+    <div class="mb-12">
+      <h1 class="text-5xl font-bold mb-4 gradient-text">Experience</h1>
+      <p class="text-lg text-gray-600 dark:text-gray-400">
+        My professional journey and expertise
+      </p>
+    </div>
+
+    <!-- Download Resume Button -->
+    <div class="mb-12">
+      <a href="#" class="btn-primary inline-flex items-center gap-2">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+        </svg>
+        Download Resume (PDF)
+      </a>
+    </div>
+
+    <!-- Work Experience -->
+    <section class="mb-16">
+      <h2 class="text-3xl font-bold mb-8 text-gray-900 dark:text-gray-100">Work Experience</h2>
+
+      <div class="space-y-8">
+        <!-- Job 1 -->
+        <div class="card border-l-4 border-l-galaxy-500">
+          <div class="flex flex-col md:flex-row md:justify-between md:items-start gap-4 mb-4">
+            <div>
+              <h3 class="text-2xl font-bold text-gray-900 dark:text-gray-100">Senior Frontend Developer</h3>
+              <p class="text-galaxy-600 dark:text-galaxy-300 font-semibold">Tech Startup Co.</p>
+            </div>
+            <time class="text-gray-600 dark:text-gray-400 whitespace-nowrap">2023 - Present</time>
+          </div>
+
+          <p class="text-gray-700 dark:text-gray-300 mb-4 leading-relaxed">
+            Led the frontend architecture for a scaling SaaS platform serving 50K+ users. Improved Core Web Vitals by 65% through performance optimization and architecture improvements.
+          </p>
+
+          <ul class="space-y-2 text-gray-700 dark:text-gray-300 mb-4">
+            <li class="flex items-start gap-3">
+              <span class="text-galaxy-600 dark:text-galaxy-300">→</span>
+              <span>Architected and implemented a component system that reduced development time by 40%</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="text-galaxy-600 dark:text-galaxy-300">→</span>
+              <span>Mentored 4 junior developers and established best practices for code quality</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="text-galaxy-600 dark:text-galaxy-300">→</span>
+              <span>Implemented comprehensive accessibility improvements achieving WCAG AAA compliance</span>
+            </li>
+          </ul>
+
+          <div class="flex flex-wrap gap-2">
+            {['React', 'TypeScript', 'Performance Optimization', 'Team Leadership', 'Accessibility'].map((skill) => (
+              <span class="text-sm px-3 py-1 rounded-full bg-galaxy-100 dark:bg-galaxy-900 text-galaxy-700 dark:text-galaxy-200">
+                {skill}
+              </span>
+            ))}
+          </div>
+        </div>
+
+        <!-- Job 2 -->
+        <div class="card border-l-4 border-l-nebula-500">
+          <div class="flex flex-col md:flex-row md:justify-between md:items-start gap-4 mb-4">
+            <div>
+              <h3 class="text-2xl font-bold text-gray-900 dark:text-gray-100">Full-Stack Developer</h3>
+              <p class="text-nebula-600 dark:text-nebula-300 font-semibold">Digital Agency</p>
+            </div>
+            <time class="text-gray-600 dark:text-gray-400 whitespace-nowrap">2021 - 2023</time>
+          </div>
+
+          <p class="text-gray-700 dark:text-gray-300 mb-4 leading-relaxed">
+            Developed and deployed 15+ client projects including e-commerce platforms, marketing websites, and custom applications. Maintained 99.5% uptime across all production systems.
+          </p>
+
+          <ul class="space-y-2 text-gray-700 dark:text-gray-300 mb-4">
+            <li class="flex items-start gap-3">
+              <span class="text-nebula-600 dark:text-nebula-300">→</span>
+              <span>Built scalable e-commerce platforms with Stripe integration handling $2M+ in transactions</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="text-nebula-600 dark:text-nebula-300">→</span>
+              <span>Optimized client sites, improving average load times from 4.2s to 1.1s</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="text-nebula-600 dark:text-nebula-300">→</span>
+              <span>Implemented CI/CD pipelines reducing deployment time by 75%</span>
+            </li>
+          </ul>
+
+          <div class="flex flex-wrap gap-2">
+            {['React', 'Node.js', 'AWS', 'PostgreSQL', 'Stripe API'].map((skill) => (
+              <span class="text-sm px-3 py-1 rounded-full bg-nebula-100 dark:bg-nebula-900/30 text-nebula-700 dark:text-nebula-200">
+                {skill}
+              </span>
+            ))}
+          </div>
+        </div>
+
+        <!-- Job 3 -->
+        <div class="card border-l-4 border-l-stardust-500">
+          <div class="flex flex-col md:flex-row md:justify-between md:items-start gap-4 mb-4">
+            <div>
+              <h3 class="text-2xl font-bold text-gray-900 dark:text-gray-100">Junior Web Developer</h3>
+              <p class="text-stardust-600 dark:text-stardust-300 font-semibold">Web Development Studio</p>
+            </div>
+            <time class="text-gray-600 dark:text-gray-400 whitespace-nowrap">2020 - 2021</time>
+          </div>
+
+          <p class="text-gray-700 dark:text-gray-300 mb-4 leading-relaxed">
+            Started my professional journey working on client websites and web applications. Built strong foundations in frontend development and modern web standards.
+          </p>
+
+          <ul class="space-y-2 text-gray-700 dark:text-gray-300 mb-4">
+            <li class="flex items-start gap-3">
+              <span class="text-stardust-600 dark:text-stardust-300">→</span>
+              <span>Developed responsive websites for 20+ clients using HTML, CSS, and JavaScript</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="text-stardust-600 dark:text-stardust-300">→</span>
+              <span>Learned best practices in version control, testing, and code review processes</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="text-stardust-600 dark:text-stardust-300">→</span>
+              <span>Completed certification in web development and responsive design</span>
+            </li>
+          </ul>
+
+          <div class="flex flex-wrap gap-2">
+            {['HTML', 'CSS', 'JavaScript', 'jQuery', 'Responsive Design'].map((skill) => (
+              <span class="text-sm px-3 py-1 rounded-full bg-stardust-100 dark:bg-stardust-900/30 text-stardust-700 dark:text-stardust-200">
+                {skill}
+              </span>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Skills -->
+    <section class="mb-16">
+      <h2 class="text-3xl font-bold mb-8 text-gray-900 dark:text-gray-100">Skills</h2>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div>
+          <h3 class="text-xl font-semibold mb-4 text-gray-900 dark:text-gray-100">Frontend</h3>
+          <div class="space-y-3">
+            <div>
+              <p class="text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">React & JavaScript</p>
+              <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2">
+                <div class="bg-gradient-to-r from-galaxy-500 to-galaxy-600 h-2 rounded-full" style="width: 95%"></div>
+              </div>
+            </div>
+            <div>
+              <p class="text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">TypeScript</p>
+              <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2">
+                <div class="bg-gradient-to-r from-galaxy-500 to-galaxy-600 h-2 rounded-full" style="width: 85%"></div>
+              </div>
+            </div>
+            <div>
+              <p class="text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">CSS & Tailwind</p>
+              <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2">
+                <div class="bg-gradient-to-r from-galaxy-500 to-galaxy-600 h-2 rounded-full" style="width: 90%"></div>
+              </div>
+            </div>
+            <div>
+              <p class="text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Vue.js</p>
+              <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2">
+                <div class="bg-gradient-to-r from-galaxy-500 to-galaxy-600 h-2 rounded-full" style="width: 75%"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <h3 class="text-xl font-semibold mb-4 text-gray-900 dark:text-gray-100">Backend & Tools</h3>
+          <div class="space-y-3">
+            <div>
+              <p class="text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Node.js & Express</p>
+              <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2">
+                <div class="bg-gradient-to-r from-nebula-500 to-nebula-600 h-2 rounded-full" style="width: 80%"></div>
+              </div>
+            </div>
+            <div>
+              <p class="text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">PostgreSQL & MongoDB</p>
+              <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2">
+                <div class="bg-gradient-to-r from-nebula-500 to-nebula-600 h-2 rounded-full" style="width: 85%"></div>
+              </div>
+            </div>
+            <div>
+              <p class="text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">AWS & DevOps</p>
+              <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2">
+                <div class="bg-gradient-to-r from-nebula-500 to-nebula-600 h-2 rounded-full" style="width: 70%"></div>
+              </div>
+            </div>
+            <div>
+              <p class="text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Git & CI/CD</p>
+              <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2">
+                <div class="bg-gradient-to-r from-nebula-500 to-nebula-600 h-2 rounded-full" style="width: 90%"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Education -->
+    <section>
+      <h2 class="text-3xl font-bold mb-8 text-gray-900 dark:text-gray-100">Education</h2>
+
+      <div class="space-y-6">
+        <div class="card border-l-4 border-l-galaxy-500">
+          <h3 class="text-xl font-bold text-gray-900 dark:text-gray-100 mb-2">Computer Science Degree</h3>
+          <p class="text-galaxy-600 dark:text-galaxy-300 font-semibold mb-2">State University</p>
+          <p class="text-gray-600 dark:text-gray-400">Graduated 2020</p>
+        </div>
+
+        <div class="card border-l-4 border-l-galaxy-500">
+          <h3 class="text-xl font-bold text-gray-900 dark:text-gray-100 mb-2">Full Stack Web Development Bootcamp</h3>
+          <p class="text-galaxy-600 dark:text-galaxy-300 font-semibold mb-2">Coding Academy</p>
+          <p class="text-gray-600 dark:text-gray-400">Completed 2019</p>
+        </div>
+      </div>
+    </section>
+  </div>
+</Layout>

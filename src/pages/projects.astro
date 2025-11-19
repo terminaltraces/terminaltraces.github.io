@@ -1,0 +1,174 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { getCollection } from 'astro:content';
+
+const allProjects = await getCollection('projects');
+const sortedProjects = allProjects.sort(
+  (a, b) => new Date(b.data.startDate).getTime() - new Date(a.data.startDate).getTime()
+);
+const featuredProjects = sortedProjects.filter((p) => p.data.featured);
+const otherProjects = sortedProjects.filter((p) => !p.data.featured);
+---
+
+<Layout title="terminaltraces | Projects">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+    <div class="mb-12">
+      <h1 class="text-5xl font-bold mb-4 gradient-text">Projects</h1>
+      <p class="text-lg text-gray-600 dark:text-gray-400">
+        A collection of work I'm proud of. Each project represents a learning journey and creative challenge.
+      </p>
+    </div>
+
+    {/* Featured Projects */}
+    {featuredProjects.length > 0 && (
+      <section class="mb-16">
+        <h2 class="text-3xl font-bold mb-8 text-gray-900 dark:text-gray-100">Featured Work</h2>
+        <div class="space-y-12">
+          {featuredProjects.map((project) => (
+            <article class="card group hover:border-galaxy-400 dark:hover:border-galaxy-500">
+              <div class="grid grid-cols-1 md:grid-cols-3 gap-6 items-center">
+                {/* Image */}
+                <div class="md:col-span-1 overflow-hidden rounded-lg">
+                  <img
+                    src={project.data.image}
+                    alt={project.data.title}
+                    class="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-300"
+                  />
+                </div>
+
+                {/* Content */}
+                <div class="md:col-span-2 flex flex-col justify-between">
+                  <div>
+                    <div class="flex items-center gap-4 mb-3">
+                      <h3 class="text-2xl font-bold text-gray-900 dark:text-gray-100 group-hover:text-galaxy-600 dark:group-hover:text-galaxy-300 transition-colors">
+                        {project.data.title}
+                      </h3>
+                      <span class="px-3 py-1 rounded-full text-sm font-medium bg-galaxy-100 dark:bg-galaxy-900 text-galaxy-700 dark:text-galaxy-200">
+                        Featured
+                      </span>
+                    </div>
+
+                    <p class="text-gray-600 dark:text-gray-400 mb-4">
+                      <strong>Role:</strong> {project.data.role}
+                    </p>
+
+                    <p class="text-gray-700 dark:text-gray-300 mb-4 leading-relaxed">
+                      {project.data.description}
+                    </p>
+
+                    {project.data.tags && project.data.tags.length > 0 && (
+                      <div class="flex flex-wrap gap-2 mb-4">
+                        {project.data.tags.map((tag) => (
+                          <span class="text-xs px-3 py-1 rounded-full bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300">
+                            {tag}
+                          </span>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+
+                  <div class="flex items-center gap-4 pt-4">
+                    <time class="text-sm text-gray-500 dark:text-gray-400">
+                      {project.data.startDate.toLocaleDateString('en-US', {
+                        year: 'numeric',
+                        month: 'short',
+                      })}
+                      {project.data.endDate ? (
+                        <>
+                          {' - '}
+                          {project.data.endDate.toLocaleDateString('en-US', {
+                            year: 'numeric',
+                            month: 'short',
+                          })}
+                        </>
+                      ) : (
+                        ' - Present'
+                      )}
+                    </time>
+                    <a
+                      href={`/projects/${project.slug}`}
+                      class="inline-flex items-center text-galaxy-600 dark:text-galaxy-300 font-semibold hover:gap-2 transition-all duration-200"
+                    >
+                      View Details
+                      <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                      </svg>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </article>
+          ))}
+        </div>
+      </section>
+    )}
+
+    {/* Other Projects */}
+    {otherProjects.length > 0 && (
+      <section>
+        <h2 class="text-3xl font-bold mb-8 text-gray-900 dark:text-gray-100">
+          {featuredProjects.length > 0 ? 'Other Projects' : 'All Projects'}
+        </h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {otherProjects.map((project) => (
+            <article class="card group hover:border-galaxy-400 dark:hover:border-galaxy-500 flex flex-col h-full">
+              {/* Image */}
+              <div class="overflow-hidden rounded-lg mb-4 -mx-6 -mt-6 mx-6">
+                <img
+                  src={project.data.image}
+                  alt={project.data.title}
+                  class="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
+                />
+              </div>
+
+              <div class="flex-grow">
+                <h3 class="text-xl font-bold mb-2 text-gray-900 dark:text-gray-100 group-hover:text-galaxy-600 dark:group-hover:text-galaxy-300 transition-colors">
+                  {project.data.title}
+                </h3>
+
+                <p class="text-sm text-gray-600 dark:text-gray-400 mb-3">
+                  <strong>Role:</strong> {project.data.role}
+                </p>
+
+                <p class="text-gray-700 dark:text-gray-300 mb-4 text-sm leading-relaxed">
+                  {project.data.description}
+                </p>
+
+                {project.data.tags && project.data.tags.length > 0 && (
+                  <div class="flex flex-wrap gap-1 mb-4">
+                    {project.data.tags.slice(0, 3).map((tag) => (
+                      <span class="text-xs px-2 py-0.5 rounded bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300">
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
+                )}
+              </div>
+
+              <div class="flex items-center justify-between pt-4 border-t border-gray-200 dark:border-gray-700">
+                <time class="text-xs text-gray-500 dark:text-gray-400">
+                  {project.data.startDate.toLocaleDateString('en-US', {
+                    year: 'numeric',
+                    month: 'short',
+                  })}
+                </time>
+                <a
+                  href={`/projects/${project.slug}`}
+                  class="text-galaxy-600 dark:text-galaxy-300 font-semibold text-sm hover:underline"
+                >
+                  View →
+                </a>
+              </div>
+            </article>
+          ))}
+        </div>
+      </section>
+    )}
+
+    {sortedProjects.length === 0 && (
+      <div class="text-center py-12">
+        <p class="text-gray-600 dark:text-gray-400 text-lg">No projects yet. Check back soon!</p>
+      </div>
+    )}
+  </div>
+</Layout>

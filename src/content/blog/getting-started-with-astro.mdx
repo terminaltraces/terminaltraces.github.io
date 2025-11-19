@@ -1,0 +1,88 @@
+---
+title: "Getting Started with Astro: A Cosmic Journey"
+description: "Learn how to build fast, modern websites with Astro and discover why it's a game-changer for web development."
+pubDate: 2024-11-15
+tags: ["astro", "web-development", "tutorial"]
+author: "terminaltraces"
+---
+
+# Getting Started with Astro
+
+Astro is a modern web framework that brings a fresh perspective to web development. Let me share my experience diving into this framework.
+
+## Why Astro?
+
+When I first encountered Astro, I was impressed by its core philosophy: **ship less JavaScript**. In a world where web frameworks often bloat our applications with unnecessary code, Astro takes a different approach.
+
+### Key Benefits:
+
+- **Zero JavaScript by default** - Only ship JS when you need it
+- **Island Architecture** - Isolated components that hydrate independently
+- **Built for content** - Perfect for blogs and documentation sites
+- **Multiple Framework Support** - Use React, Vue, Svelte, and more together
+
+## Setting Up Your First Project
+
+Getting started is incredibly simple:
+
+```bash
+npm create astro@latest my-project
+cd my-project
+npm run dev
+```
+
+That's it! You now have a modern Astro project running.
+
+## Understanding the File Structure
+
+```
+src/
+├── pages/        # File-based routing
+├── components/   # Reusable components
+├── layouts/      # Layout templates
+└── content/      # Markdown/MDX content
+```
+
+Each `.astro` file in the `pages` directory automatically becomes a route.
+
+## Creating Your First Component
+
+Astro components are a hybrid of HTML templates and frontmatter:
+
+```astro
+---
+// This runs on the server only
+const { title } = Astro.props;
+---
+
+<div class="greeting">
+  <h1>{title}</h1>
+  <p>This HTML will be sent to the browser with zero JavaScript!</p>
+</div>
+
+<style>
+  .greeting {
+    font-size: 2rem;
+  }
+</style>
+```
+
+## Islands of Interactivity
+
+Need JavaScript? Use React, Vue, or Svelte islands:
+
+```astro
+---
+import MyReactComponent from '../components/MyReactComponent.jsx';
+---
+
+<MyReactComponent client:load />
+```
+
+The `client:load` directive tells Astro to hydrate this component in the browser.
+
+## Final Thoughts
+
+Astro represents a paradigm shift in how we think about web frameworks. By prioritizing performance and developer experience, it's become my go-to choice for building fast, accessible websites.
+
+If you're interested in modern web development, I highly recommend giving Astro a try!
