@@ -1,0 +1,31 @@
+---
+import LinkedInIcon from './icons/LinkedInIcon.astro';
+import GitHubIcon from './icons/GitHubIcon.astro';
+
+interface Props {
+  icon: 'linkedin' | 'github';
+  url: string;
+  name: string;
+  class?: string;
+}
+
+const { icon, url, name, class: className = 'w-6 h-6 text-galaxy-600 dark:text-galaxy-300' } = Astro.props;
+
+const iconComponents = {
+  linkedin: LinkedInIcon,
+  github: GitHubIcon,
+};
+
+const IconComponent = iconComponents[icon];
+---
+
+<a
+  href={url}
+  target="_blank"
+  rel="noopener noreferrer"
+  aria-label={name}
+  class="p-2 rounded-full hover:bg-galaxy-100 dark:hover:bg-galaxy-900 transition-colors"
+  title={name}
+>
+  <IconComponent class={className} />
+</a>
