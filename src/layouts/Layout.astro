@@ -20,17 +20,14 @@ const { title, description = 'terminaltraces | Portfolio' } = Astro.props;
     <title>{title}</title>
     <style is:inline>
       html {
-        color-scheme: light dark;
-      }
-      html.dark {
         color-scheme: dark;
       }
     </style>
   </head>
-  <body class="bg-white dark:bg-[#0f0a1a] text-gray-900 dark:text-gray-100 transition-colors duration-300">
+  <body class="bg-[#0f0a1a] text-gray-100 transition-colors duration-300">
     <!-- Background elements -->
-    <div class="fixed inset-0 -z-20 bg-galaxy-gradient dark:bg-black"></div>
-    <div class="fixed inset-0 -z-10 bg-galaxy-radial dark:opacity-50 opacity-20"></div>
+    <div class="fixed inset-0 -z-20 bg-black"></div>
+    <div class="fixed inset-0 -z-10 bg-galaxy-radial opacity-50"></div>
 
     <!-- Main content -->
     <div class="relative z-0 min-h-screen flex flex-col">
@@ -42,21 +39,5 @@ const { title, description = 'terminaltraces | Portfolio' } = Astro.props;
 
       <Footer />
     </div>
-
-    <!-- Theme initialization script -->
-    <script is:inline>
-      // Initialize theme before rendering
-      (function () {
-        const savedTheme = localStorage.getItem('theme');
-        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-        const theme = savedTheme || (prefersDark ? 'dark' : 'light');
-
-        if (theme === 'dark') {
-          document.documentElement.classList.add('dark');
-        } else {
-          document.documentElement.classList.remove('dark');
-        }
-      })();
-    </script>
   </body>
 </html>

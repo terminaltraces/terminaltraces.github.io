@@ -5,40 +5,28 @@
 @layer base {
   html {
     scroll-behavior: smooth;
+    color-scheme: dark;
   }
 
   body {
     @apply transition-colors duration-300;
   }
 
-  /* Light mode (default) */
+  /* Dark mode color variables - improved for accessibility */
   :root {
-    --bg-primary: #ffffff;
-    --bg-secondary: #f8f4ff;
-    --bg-tertiary: #f0e8ff;
-    --text-primary: #2a1450;
-    --text-secondary: #4a2480;
-    --text-tertiary: #6d37b0;
-    --border-color: #e0d0ff;
-    --accent-primary: #a368ff;
-    --accent-secondary: #ff7890;
-  }
-
-  /* Dark mode */
-  html.dark {
     --bg-primary: #0f0a1a;
     --bg-secondary: #1a0f30;
     --bg-tertiary: #2a1450;
     --text-primary: #f8f4ff;
     --text-secondary: #e0d0ff;
-    --text-tertiary: #b890ff;
+    --text-tertiary: #c4b0e8;
     --border-color: #4a2480;
     --accent-primary: #d1b8ff;
-    --accent-secondary: #ff9db0;
+    --accent-secondary: #ffadc0;
   }
 
   body {
-    @apply bg-white dark:bg-[#0f0a1a] text-gray-900 dark:text-gray-100;
+    @apply bg-[#0f0a1a] text-gray-100;
   }
 }
 
@@ -54,15 +42,15 @@
   }
 
   .btn-secondary {
-    @apply px-6 py-2 rounded-full font-medium border-2 border-galaxy-500 dark:border-galaxy-400 text-galaxy-700 dark:text-galaxy-200 transition-all duration-200 hover:scale-105 dark:bg-galaxy-900/20;
+    @apply px-6 py-2 rounded-full font-medium border-2 border-galaxy-400 text-galaxy-200 transition-all duration-200 hover:scale-105 bg-galaxy-900/20;
   }
 
   .btn-secondary:hover {
-    @apply bg-galaxy-100 dark:bg-galaxy-800;
+    @apply bg-galaxy-800;
   }
 
   .card {
-    @apply bg-white dark:bg-gray-800 rounded-2xl p-6 border border-gray-200 dark:border-gray-700 transition-all duration-200 hover:shadow-lg;
+    @apply bg-gray-800 rounded-2xl p-6 border border-gray-700 transition-all duration-200 hover:shadow-lg;
   }
 
   .star {
@@ -71,15 +59,11 @@
   }
 
   .gradient-text {
-    @apply bg-gradient-to-r from-galaxy-700 via-nebula-600 to-stardust-600 bg-clip-text text-transparent;
-  }
-
-  html.dark .gradient-text {
-    @apply bg-gradient-to-r from-galaxy-300 via-nebula-400 to-stardust-300 bg-clip-text text-transparent;
+    @apply bg-gradient-to-r from-galaxy-400 via-nebula-400 to-stardust-400 bg-clip-text text-transparent;
   }
 
   .nav-link {
-    @apply relative px-4 py-2 font-medium text-gray-700 dark:text-gray-300 transition-colors duration-200 after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-gradient-to-r after:from-galaxy-500 after:to-nebula-500 after:transition-all after:duration-300 hover:after:w-full;
+    @apply relative px-4 py-2 font-medium text-gray-300 transition-colors duration-200 after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-gradient-to-r after:from-galaxy-500 after:to-nebula-500 after:transition-all after:duration-300 hover:after:w-full hover:text-gray-100;
   }
 
   .section-title {
@@ -93,7 +77,7 @@
 }
 
 ::-webkit-scrollbar-track {
-  @apply bg-gray-100 dark:bg-gray-900;
+  @apply bg-gray-900;
 }
 
 ::-webkit-scrollbar-thumb {

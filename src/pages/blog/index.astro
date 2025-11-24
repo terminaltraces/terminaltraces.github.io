@@ -12,22 +12,22 @@ const sortedPosts = allPosts.sort(
   <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
     <div class="mb-12">
       <h1 class="text-5xl font-bold mb-4 gradient-text">Writing & Articles</h1>
-      <p class="text-lg text-gray-600 dark:text-gray-400">
+      <p class="text-lg text-gray-400">
         Thoughts on web development, performance, accessibility, and creative coding.
       </p>
     </div>
 
     {sortedPosts.length === 0 ? (
       <div class="text-center py-12">
-        <p class="text-gray-600 dark:text-gray-400 text-lg">No blog posts yet. Check back soon!</p>
+        <p class="text-gray-400 text-lg">No blog posts yet. Check back soon!</p>
       </div>
     ) : (
       <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
         {sortedPosts.map((post) => (
-          <article class="card group hover:border-galaxy-400 dark:hover:border-galaxy-500 h-full">
+          <article class="card group hover:border-galaxy-500 h-full">
             <div class="flex flex-col h-full">
               <div class="flex-grow">
-                <time class="text-sm text-gray-500 dark:text-gray-400" datetime={post.data.pubDate.toISOString()}>
+                <time class="text-sm text-gray-400" datetime={post.data.pubDate.toISOString()}>
                   {post.data.pubDate.toLocaleDateString('en-US', {
                     year: 'numeric',
                     month: 'long',
@@ -35,18 +35,18 @@ const sortedPosts = allPosts.sort(
                   })}
                 </time>
 
-                <h2 class="text-2xl font-bold mt-2 mb-3 group-hover:text-galaxy-600 dark:group-hover:text-galaxy-300 transition-colors">
+                <h2 class="text-2xl font-bold mt-2 mb-3 group-hover:text-galaxy-300 transition-colors">
                   {post.data.title}
                 </h2>
 
-                <p class="text-gray-600 dark:text-gray-400 mb-4 leading-relaxed">
+                <p class="text-gray-400 mb-4 leading-relaxed">
                   {post.data.description}
                 </p>
 
                 {post.data.tags && post.data.tags.length > 0 && (
                   <div class="flex flex-wrap gap-2 mb-4">
                     {post.data.tags.map((tag) => (
-                      <span class="text-xs px-3 py-1 rounded-full bg-galaxy-100 dark:bg-galaxy-900 text-galaxy-700 dark:text-galaxy-200">
+                      <span class="text-xs px-3 py-1 rounded-full bg-galaxy-900 text-galaxy-200">
                         {tag}
                       </span>
                     ))}
@@ -56,7 +56,7 @@ const sortedPosts = allPosts.sort(
 
               <a
                 href={`/blog/${post.slug}`}
-                class="inline-flex items-center text-galaxy-600 dark:text-galaxy-300 font-semibold hover:gap-2 transition-all duration-200"
+                class="inline-flex items-center text-galaxy-300 font-semibold hover:gap-2 transition-all duration-200"
               >
                 Read more
                 <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">

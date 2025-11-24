@@ -1,15 +1,20 @@
 ---
-import ThemeToggle from './ThemeToggle.jsx';
-import MenuIcon from './icons/MenuIcon.astro';
-import { navItems, siteConfig } from '../config/site.js';
+const navItems = [
+  { href: '/', label: 'Home' },
+  { href: '/about', label: 'About' },
+  { href: '/projects', label: 'Projects' },
+  { href: '/blog', label: 'Writing' },
+  { href: '/experience', label: 'Experience' },
+  { href: '/contact', label: 'Contact' },
+];
 ---
 
-<nav class="sticky top-0 z-40 backdrop-blur-md bg-white/80 dark:bg-gray-900/80 border-b border-gray-200 dark:border-gray-800">
+<nav class="sticky top-0 z-40 backdrop-blur-md bg-gray-900/80 border-b border-gray-800">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="flex justify-between items-center h-16">
       <!-- Logo -->
       <a href="/" class="font-bold text-2xl gradient-text hover:scale-110 transition-transform duration-200">
-        {siteConfig.branding}
+        ✨ terminaltraces
       </a>
 
       <!-- Desktop Navigation -->
@@ -23,16 +28,16 @@ import { navItems, siteConfig } from '../config/site.js';
 
       <!-- Right side items -->
       <div class="flex items-center gap-4">
-        <ThemeToggle client:load />
-
         <!-- Mobile menu button -->
         <button
           id="mobile-menu-btn"
-          class="md:hidden p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
+          class="md:hidden p-2 rounded-lg hover:bg-gray-800 transition-colors"
           aria-label="Toggle mobile menu"
           aria-expanded="false"
         >
-          <MenuIcon />
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+          </svg>
         </button>
       </div>
     </div>
@@ -41,7 +46,7 @@ import { navItems, siteConfig } from '../config/site.js';
     <div id="mobile-menu" class="hidden md:hidden pb-4">
       <div class="flex flex-col gap-2">
         {navItems.map((item) => (
-          <a href={item.href} class="px-4 py-2 rounded-lg hover:bg-galaxy-100 dark:hover:bg-galaxy-900 transition-colors">
+          <a href={item.href} class="px-4 py-2 rounded-lg hover:bg-galaxy-900 transition-colors">
             {item.label}
           </a>
         ))}
