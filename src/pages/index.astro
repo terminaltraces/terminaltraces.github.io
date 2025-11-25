@@ -13,7 +13,7 @@ const stars = Array.from({ length: 50 }, (_, i) => ({
 
 <Layout title="terminaltraces | Home">
   <!-- Hero Section -->
-  <section class="relative min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8 overflow-hidden">
+  <section class="relative min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8 overflow-hidden pt-20 md:pt-0">
     <!-- Animated stars background -->
     <div class="absolute inset-0 -z-10">
       {stars.map((star) => (
@@ -72,13 +72,6 @@ const stars = Array.from({ length: 50 }, (_, i) => ({
           </a>
         </div>
       </div>
-    </div>
-
-    <!-- Scroll indicator -->
-    <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
-      <svg class="w-6 h-6 text-galaxy-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3" />
-      </svg>
     </div>
   </section>
 
